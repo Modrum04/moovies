@@ -13,34 +13,41 @@ const options = {
     Authorization: `Bearer ${token}`,
   },
 };
-// `include_adult=true&include_video=false&language=fr&page=${randomNumber}&sort_by=popularity.asc&vote_average.lte=${maxRating}&vote_count.gte=20`;
-const tab = [
-  { include_adult: true },
-  { include_video: false },
-  { language: "fr" },
-  { page: randomNumber },
-  { "vote_average.lte": maxRating },
-  { "vote_count.gte": 20 },
-];
 
-const query = (tab) => {
-  return tab
-    .flatMap((obj, i, arr) => {
-      const stringQuery = Object.keys(obj) + "=" + Object.values(obj);
-      return arr.length - 1 === i ? stringQuery : stringQuery + "&";
-    })
-    .join("");
-};
+export function fetchData(queryOptions = {}) {
+  const [data, setData] = useState({});
+  const [isLoading, setIsloading] = useState(true);
 
-export async function fetchData() {
-  try {
-    const response = await fetch(
-      `https://api.themoviedb.org/3/discover/movie?${query(tab)}`,
-      options,
-    );
-    const data = await response.json();
-    return data;
-  } catch (error) {
-    console.error(error);
-  }
+  const defaultQueryOptions = {
+    include_adult: false,
+    include_video: true,
+    language: "fr",
+    page: randomNumber,
+    "vote_average.lte": 10,
+    "vote_count.gte": 20,
+    sort_by: "popularity.asc",
+  };
+
+  const queryString = () => {
+    let finalQueryOptions = Object.assign({}, defaultQueryOptions, queryOptions);
+    return Object.entries(finalQueryOptions)
+      .map(([key, value]) => `${key}=${value}`)
+      .join("&");
+  };
+
+  console.log(queryString());
+  useEffect(() => {
+    try {
+      fetch(`https://api.themoviedb.org/3/discover/movie?${queryString()}`, options)
+        .then((response) => response.json())
+        .then((data) => {
+          setIsloading(false);
+          setData(data);
+        });
+    } catch (error) {
+      console.error(error);
+    }
+  }, []);
+
+  return { data, isLoading };
 }
