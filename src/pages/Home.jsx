@@ -7,28 +7,37 @@ import { fetchData } from "../tools/fetchData";
 function Home() {
   const [popular, setPopular] = useState({});
   const [nanard, setNanard] = useState({});
-  const { data: data1, isLoading: isLoading1 } = fetchData({
+  const randomPage = Math.ceil(Math.random() * 10);
+
+  const { data: dataNanard, isLoading: isLoading1 } = fetchData("discover", {
     sort_by: "popularity.asc",
     "vote_average.lte": 3,
     "vote_count.gte": 20,
+    page: randomPage,
   });
-  const { data: data2, isLoading: isLoading2 } = fetchData({ sort_by: "popularity.dsc" });
-  useEffect(() => {
-    if (data1.results && data2.results) {
-      const randomMoovie = (test) =>
-        test.results[Math.floor(Math.random() * test.results.length - 1)];
-      setNanard(randomMoovie(data1));
-      setPopular(randomMoovie(data2));
-    }
-  }, [data1, data2]);
 
-  return isLoading1 && isLoading2 ? (
+  const { data: dataPopular, isLoading: isLoading2 } = fetchData("discover", {
+    sort_by: "popularity.dsc",
+    page: randomPage,
+  });
+
+  const randomMoovie = (data) => data.results[Math.floor(Math.random() * data.results.length - 1)];
+
+  useEffect(() => {
+    if (!isLoading1 && !isLoading2) {
+      setNanard(randomMoovie(dataNanard));
+      setPopular(randomMoovie(dataPopular));
+    }
+  }, [dataNanard, dataPopular]);
+
+  return isLoading1 || isLoading2 ? (
     <>
       {" "}
       <h3>En chargement</h3>
     </>
   ) : (
     <div className="home-page-container">
+      {console.log(popular)}
       <div className="presentation">
         <h2>Bienvenue sur Moovies Lib</h2>
         <h2>Votre cinémathèque</h2>
@@ -61,7 +70,7 @@ function Home() {
           />
         </div>
         <div className="pepite">
-          <h2 className="title-card">La Pépite</h2>
+          <h2 className="title-card">L'incontournable</h2>
           <Card
             originalTitle={popular?.original_title}
             poster={`https://image.tmdb.org/t/p/w500/${popular?.poster_path}`}

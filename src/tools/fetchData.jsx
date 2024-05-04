@@ -1,10 +1,6 @@
 import { useEffect, useState } from "react";
 
-const randomNumber = Math.floor(Math.random() * 10);
-
 const token = import.meta.env.VITE_MY_API_TOKEN;
-
-const maxRating = 3;
 
 const options = {
   method: "GET",
@@ -14,35 +10,53 @@ const options = {
   },
 };
 
-export function fetchData(queryOptions = {}) {
+const queryList = {
+  discover: {
+    endPoint: "discover/movie?",
+    defaultQueryOptions: {
+      include_adult: false,
+      include_video: true,
+      language: "fr",
+      page: 1,
+      "vote_average.lte": 10,
+      "vote_count.gte": 20,
+      sort_by: "popularity.asc",
+    },
+  },
+  filter: {
+    endPoint: "genre/movie/list?",
+    defaultQueryOptions: {
+      language: "fr",
+    },
+  },
+};
+
+export function fetchData(selectedEndpoint, queryOptions = {}) {
   const [data, setData] = useState({});
   const [isLoading, setIsloading] = useState(true);
 
-  const defaultQueryOptions = {
-    include_adult: false,
-    include_video: true,
-    language: "fr",
-    page: randomNumber,
-    "vote_average.lte": 10,
-    "vote_count.gte": 20,
-    sort_by: "popularity.asc",
-  };
-
   const queryString = () => {
-    let finalQueryOptions = Object.assign({}, defaultQueryOptions, queryOptions);
-    return Object.entries(finalQueryOptions)
-      .map(([key, value]) => `${key}=${value}`)
-      .join("&");
+    console.log(queryList[selectedEndpoint]);
+    let finalQueryOptions = Object.assign(
+      {},
+      queryList[selectedEndpoint]?.defaultQueryOptions,
+      queryOptions,
+    );
+    return (
+      queryList[selectedEndpoint].endPoint +
+      Object.entries(finalQueryOptions)
+        .map(([key, value]) => `${key}=${value}`)
+        .join("&")
+    );
   };
 
-  console.log(queryString());
   useEffect(() => {
     try {
-      fetch(`https://api.themoviedb.org/3/discover/movie?${queryString()}`, options)
+      fetch(`https://api.themoviedb.org/3/${queryString()}`, options)
         .then((response) => response.json())
         .then((data) => {
-          setIsloading(false);
           setData(data);
+          setIsloading(false);
         });
     } catch (error) {
       console.error(error);
