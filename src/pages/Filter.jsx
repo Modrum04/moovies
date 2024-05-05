@@ -1,34 +1,20 @@
 import "./Filter.scss";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { fetchData } from "../tools/fetchData";
 import FilterByGenre from "../components/FilterByGenre";
 import Card from "../components/Card";
 
 function Filter() {
-  const [films, setFilms] = useState();
   const [genre, setGenre] = useState([]);
   const [pages, setPages] = useState(1);
+  const { data, isLoading } = fetchData("discover", {
+    sort_by: "popularity.dsc",
+    page: pages,
+    with_genres: genre,
+  });
+
   const total = 500;
 
-  const token = import.meta.env.VITE_MY_API_TOKEN;
-
-  useEffect(() => {
-    const options = {
-      method: "GET",
-      headers: {
-        accept: "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    };
-
-    const url = `https://api.themoviedb.org/3/discover/movie?include_adult=true&include_video=false&language=fr&page=${pages}&sort_by=popularity.desc&with_genres=${genre}`;
-
-    fetch(url, options)
-      .then((response) => response.json())
-      .then((filmData) => {
-        setFilms(filmData.results);
-      })
-      .catch((err) => console.error(err));
-  }, [genre, pages, token]);
   return (
     <>
       <div className="global-filter">
@@ -46,8 +32,8 @@ function Filter() {
         )}
       </div>
       <div className="filter-card-container">
-        {films &&
-          films.map((film) => (
+        {data.results &&
+          data.results.map((film) => (
             <Card
               key={film.id}
               originalTitle={film?.original_title}

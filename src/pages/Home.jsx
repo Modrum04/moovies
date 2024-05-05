@@ -7,7 +7,7 @@ import { fetchData } from "../tools/fetchData";
 function Home() {
   const [popular, setPopular] = useState({});
   const [nanard, setNanard] = useState({});
-  const randomPage = Math.ceil(Math.random() * 10);
+  const [randomPage, setRandomPage] = useState(1);
 
   const { data: dataNanard, isLoading: isLoading1 } = fetchData("discover", {
     sort_by: "popularity.asc",
@@ -21,18 +21,21 @@ function Home() {
     page: randomPage,
   });
 
-  const randomMoovie = (data) => data.results[Math.floor(Math.random() * data.results.length - 1)];
+  const defineRandomIndex = (data) => Math.floor(Math.random() * data.results.length - 1);
+  const defineRandomPageNumber = () => Math.ceil(Math.random() * 10);
 
   useEffect(() => {
-    if (!isLoading1 && !isLoading2) {
-      setNanard(randomMoovie(dataNanard));
-      setPopular(randomMoovie(dataPopular));
+    setRandomPage(defineRandomPageNumber());
+    if (dataNanard.results && dataPopular.results) {
+      const randomNanardIndex = defineRandomIndex(dataNanard);
+      const randomPopularIndex = defineRandomIndex(dataPopular);
+      setNanard(dataNanard.results[randomNanardIndex]);
+      setPopular(dataPopular.results[randomPopularIndex]);
     }
-  }, [dataNanard, dataPopular]);
+  }, [isLoading1, isLoading2]);
 
-  return isLoading1 || isLoading2 ? (
+  return isLoading1 && isLoading2 ? (
     <>
-      {" "}
       <h3>En chargement</h3>
     </>
   ) : (

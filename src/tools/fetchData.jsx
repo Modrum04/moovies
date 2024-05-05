@@ -29,6 +29,18 @@ const queryList = {
       language: "fr",
     },
   },
+  search: {
+    endPoint: "search/movie?",
+    defaultQueryOptions: {
+      query: "",
+      include_adult: false,
+      language: "fr",
+      page: 1,
+      "vote_average.lte": 10,
+      "vote_count.gte": 20,
+      sort_by: "popularity.asc",
+    },
+  },
 };
 
 export function fetchData(selectedEndpoint, queryOptions = {}) {
@@ -61,7 +73,7 @@ export function fetchData(selectedEndpoint, queryOptions = {}) {
     } catch (error) {
       console.error(error);
     }
-  }, []);
+  }, [queryString()]);
 
   return { data, isLoading };
 }
