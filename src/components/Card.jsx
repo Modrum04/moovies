@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { useContext } from "react";
 import { ThemeContext } from "../contexts/ThemeContext";
 
-function Card({ originalTitle, poster, overview, voteAverage, title, filmid }) {
+function Card({ originalTitle, poster, overview, voteAverage, title, filmid, resultNumber }) {
   const { theme } = useContext(ThemeContext);
   const noInformations = "Information non disponible";
 
@@ -39,7 +39,8 @@ function Card({ originalTitle, poster, overview, voteAverage, title, filmid }) {
             </Link>
           </div>
         </div>
-      </div>
+      </div>{" "}
+      <em>{resultNumber}</em>
     </div>
   );
 }

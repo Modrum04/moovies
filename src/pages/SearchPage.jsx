@@ -87,7 +87,7 @@ function SearchPage() {
       <div className="grid-container-cards">
         {data?.results?.length > 0 &&
           searchText !== "" &&
-          data?.results?.map((movie) => (
+          data?.results?.map((movie, i, arr) => (
             <>
               <Card
                 key={movie.id}
@@ -97,6 +97,7 @@ function SearchPage() {
                 voteAverage={movie?.vote_average}
                 filmid={movie?.id}
                 title={movie?.title}
+                resultNumber={i + 1 + " sur " + fetchedData?.total_results}
               />
             </>
           ))}
