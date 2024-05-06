@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "./SearchBar.scss";
 
 function SearchBar({ setSearch, search, setPage }) {
   const [inputText, setInputText] = useState(search);
@@ -7,7 +8,7 @@ function SearchBar({ setSearch, search, setPage }) {
   const handleInputChange = (e) => {
     const text = e.target.value;
     setInputText(text);
-
+    window.scroll(0, 0);
     if (typingTimeout) {
       clearTimeout(typingTimeout);
     }
@@ -23,6 +24,7 @@ function SearchBar({ setSearch, search, setPage }) {
   return (
     <>
       <input
+        className="search-bar"
         type="text"
         value={inputText}
         onChange={handleInputChange}

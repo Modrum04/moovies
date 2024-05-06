@@ -69,14 +69,16 @@ function SearchPage() {
 
   return (
     <div className="container-searchPage">
-      {console.log(data)}
-      <SearchBar setSearch={setSearchText} search={searchText} setPage={setCurrentPage} />
+      <div className="container-search-menu">
+        <SearchBar setSearch={setSearchText} search={searchText} setPage={setCurrentPage} />
 
-      {data?.results?.length !== 0 && searchText !== "" && (
-        <div className="container-handleChange">
-          <p>Nombre de résultats : {fetchedData?.total_results}</p>
-        </div>
-      )}
+        {data?.results?.length !== 0 && searchText !== "" && (
+          <div className="container-handleChange">
+            <p>Nombre de résultats obtenus : {fetchedData?.total_results}</p>
+          </div>
+        )}
+      </div>
+
       {searchText === "" && <i className="fi fi-ts-popcorn" />}
       {searchText !== "" && fetchedData.results?.length === 0 && (
         <p>Désolé, aucun film ne correspond à ta recherche</p>
@@ -99,8 +101,7 @@ function SearchPage() {
             </>
           ))}
       </div>
-      <div className="observer" />
-      {isLoading && searchText && <h3>En chargement...</h3>}
+      <div className="observer">{isLoading && searchText && <h3>En chargement...</h3>}</div>
     </div>
   );
 }

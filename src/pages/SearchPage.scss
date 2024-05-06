@@ -26,8 +26,16 @@ $spacingDouble: $spacing * 2;
   gap: 10px;
   min-height: 85dvh;
   padding-bottom: $spacingDouble;
-  button {
-    padding-block: $spacing;
+  .container-search-menu {
+    width: 100%;
+    position: sticky;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: $spacingDouble;
+    padding: $spacingDouble;
   }
   i {
     position: absolute;
@@ -50,11 +58,6 @@ input {
 }
 
 .container-handleChange {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
 }
 
 .container-btn {
