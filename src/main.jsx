@@ -4,7 +4,7 @@ import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import App from "./App";
 import Details from "./pages/Details";
-import Search from "./pages/Search";
+import SearchPage from "./pages/SearchPage";
 import Filter from "./pages/Filter";
 import { ThemeContextProvider } from "./contexts/ThemeContext";
 import HeaderLayout from "./layouts/HeaderLayout";
@@ -20,7 +20,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/search",
-        element: <Search />,
+        element: <SearchPage />,
       },
       {
         path: "/filter",

@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import "./FilterByGenre.scss";
 import { fetchData } from "../tools/fetchData";
 import PropTypes from "prop-types";
@@ -8,7 +7,6 @@ function FilterByGenre({ setGenre }) {
 
   return !isLoading ? (
     <div className="dropdown-menu">
-      {console.log(data)}
       <i className="fi fi-rr-settings-sliders" />
       <select
         className="FiltreStyle"

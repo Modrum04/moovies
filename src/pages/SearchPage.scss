@@ -19,13 +19,16 @@ $spacingDouble: $spacing * 2;
   }
 }
 
-.container-searchBar {
+.container-searchPage {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 10px;
   min-height: 85dvh;
   padding-bottom: $spacingDouble;
+  button {
+    padding-block: $spacing;
+  }
   i {
     position: absolute;
     font-size: $fontSize1 * 10;

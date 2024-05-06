@@ -48,7 +48,6 @@ export function fetchData(selectedEndpoint, queryOptions = {}) {
   const [isLoading, setIsloading] = useState(true);
 
   const queryString = () => {
-    console.log(queryList[selectedEndpoint]);
     let finalQueryOptions = Object.assign(
       {},
       queryList[selectedEndpoint]?.defaultQueryOptions,
