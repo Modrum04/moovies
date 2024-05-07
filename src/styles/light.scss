@@ -10,6 +10,9 @@ $shadowBox: 4px 4px 4px rgb(80, 80, 80);
   &.themed-main {
     background-color: $backgroundColor;
     color: $textColor;
+    .container-search-menu {
+      background-color: $backgroundColor;
+    }
   }
   &.themed-fiche {
     background-color: $backgroundCardColor;

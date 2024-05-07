@@ -29,6 +29,7 @@ $spacingDouble: $spacing * 2;
   .container-search-menu {
     width: 100%;
     position: sticky;
+    top: 0;
     display: flex;
     flex-direction: column;
     align-items: center;

@@ -35,6 +35,7 @@ header {
     font-weight: 200;
     @include mq() {
       font-size: $fontSize1 * 3;
+      font-weight: 100;
     }
   }
   .logo {

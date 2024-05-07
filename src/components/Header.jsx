@@ -9,7 +9,7 @@ function Header() {
       <Link to="/">
         <img className="logo" src={logo} alt="" />
       </Link>
-      <h1>Moovies Lib</h1>
+      <h1>Moovies</h1>
       <DropdownSettings />
     </header>
   );
