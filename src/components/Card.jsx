@@ -27,7 +27,7 @@ function Card({ originalTitle, poster, overview, voteAverage, title, filmid, res
       <div className="container-card">
         <img src={poster} alt="" className="images" />
         <div className="info">
-          <h3>Synopsys</h3>
+          <h3>Synopsis</h3>
           <p className="description">{overview || <em className="noinfo">{noInformations}</em>}</p>
           <h3 className="vote">Note des spectateurs</h3>
           <p className="stars">{starsString}</p>

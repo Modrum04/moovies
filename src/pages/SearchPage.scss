@@ -25,7 +25,7 @@ $spacingDouble: $spacing * 2;
   align-items: center;
   gap: 10px;
   min-height: 85dvh;
-  padding-bottom: $spacingDouble;
+  padding: $spacingDouble;
   .container-search-menu {
     width: 100%;
     position: sticky;
@@ -36,6 +36,9 @@ $spacingDouble: $spacing * 2;
     justify-content: center;
     gap: $spacingDouble;
     padding: $spacingDouble;
+    background-color: transparent;
+    backdrop-filter: blur(20px);
+    filter: drop-shadow(0 0 20px rgb(14, 20, 27));
   }
   i {
     position: absolute;
@@ -57,27 +60,19 @@ input {
   }
 }
 
-.container-handleChange {
-}
-
 .container-btn {
   display: flex;
   gap: 10px;
 }
 
-[disabled] {
-  display: none;
-}
-
 .grid-container-cards {
   display: grid;
   gap: $spacingDouble;
-  padding: $spacingDouble;
+
   @include mq() {
     grid-template-columns: repeat(2, 1fr);
     max-width: 100%;
     gap: $spacingDouble;
-    padding: $spacingDouble * 2;
   }
 }
 
