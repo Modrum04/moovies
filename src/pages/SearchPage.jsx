@@ -84,7 +84,7 @@ function SearchPage() {
                 </h1>
                 <div className="grid-container-cards">
                   {objResults?.results?.map((movie, i) => {
-                    // movie.resultNumb = i + 1 + (objResults.page - 1) * 20;
+                    movie.resultNumb = i + 1 + (objResults.page - 1) * 20;
                     return (
                       <Card
                         key={movie.id}
@@ -94,9 +94,7 @@ function SearchPage() {
                         voteAverage={movie?.vote_average}
                         filmid={movie?.id}
                         title={movie?.title}
-                        resultNumber={
-                          i + 1 + (objResults.page - 1) * 20 + " sur " + fetchedData?.total_results
-                        }
+                        resultNumber={movie?.resultNumb + " sur " + fetchedData?.total_results}
                       />
                     );
                   })}{" "}
