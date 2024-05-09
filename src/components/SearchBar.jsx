@@ -16,7 +16,7 @@ function SearchBar({ setSearch, search, setPage }) {
     const newTypingTimeout = setTimeout(() => {
       setSearch(text);
       setPage(1);
-    }, 250);
+    }, 500);
 
     setTypingTimeout(newTypingTimeout);
   };

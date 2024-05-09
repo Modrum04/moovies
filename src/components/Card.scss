@@ -35,6 +35,10 @@ $spacingDouble: $spacing * 2;
     @include flexDisplay(column, flex-start, start);
     gap: $spacingDouble;
   }
+  &:hover {
+    transition: all 250ms ease-in-out;
+    border: solid 1px white;
+  }
 }
 
 .title {

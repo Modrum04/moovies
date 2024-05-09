@@ -20,15 +20,15 @@ function SearchPage() {
   }, [searchText]);
 
   useEffect(() => {
-    if (fetchedData && data.length > 0) {
+    if (!fetchedData.results || fetchedData.results.length === 0) {
+      setData([]);
+    } else if (fetchedData.results) {
       setData((prev) => [...prev, fetchedData]);
-    } else {
-      setData([fetchedData]);
     }
   }, [fetchedData]);
 
   useEffect(() => {
-    if (currentPage < 1) return;
+    if (fetchedData.total_pages < 2) return;
 
     const options = {
       root: null,
@@ -38,6 +38,7 @@ function SearchPage() {
 
     const handleIntersection = (entries) => {
       const target = entries[0];
+      console.log(target);
       if (target.isIntersecting && currentPage < fetchedData.total_pages && !isLoading) {
         setIsloading(true);
         setTimeout(() => {
@@ -58,56 +59,56 @@ function SearchPage() {
   }, [data]);
 
   return (
-    <div className="container-searchPage">
-      {console.log(data)}
-      <div className="container-search-menu">
-        <SearchBar setSearch={setSearchText} search={searchText} setPage={setCurrentPage} />
-        <button onClick={() => setCurrentPage(currentPage + 1)}>{fetchedData?.total_pages}</button>
-      </div>
-
-      {data?.results?.length !== 0 && searchText !== "" && (
-        <div className="container-handleChange">
-          <p>Nombre de résultats obtenus : {fetchedData?.total_results}</p>
+    <>
+      <div className="container-searchPage">
+        <div className="container-search-menu">
+          <SearchBar setSearch={setSearchText} search={searchText} setPage={setCurrentPage} />
         </div>
-      )}
-
-      {searchText === "" && <i className="fi fi-ts-popcorn" />}
-      {searchText !== "" && fetchedData.results?.length === 0 && (
-        <p>Désolé, aucun film ne correspond à ta recherche</p>
-      )}
-
-      <>
-        {data &&
-          searchText !== "" &&
-          data?.map((objResults) => (
-            <>
-              <h1 className={`page-start-${objResults.page}`}>
-                Page : {objResults.page} sur {objResults.total_pages} -{" "}
-                <em>{objResults.results?.length} résultats</em>
-              </h1>
-              <div className="grid-container-cards">
-                {objResults?.results?.map((movie, i, arr) => (
-                  <Card
-                    key={movie.id}
-                    originalTitle={movie?.original_title}
-                    poster={`https://image.tmdb.org/t/p/w500/${movie?.poster_path}`}
-                    overview={movie?.overview}
-                    voteAverage={movie?.vote_average}
-                    filmid={movie?.id}
-                    title={movie?.title}
-                    resultNumber={
-                      i + 1 + (objResults.page - 1) * 20 + " sur " + fetchedData?.total_results
-                    }
-                  />
-                ))}{" "}
-              </div>
-            </>
-          ))}
-      </>
-      <div className="observer" style={{ minHeight: "10dvh" }}>
-        {isLoading && searchText && <h1>En chargement...</h1>}
+        {data?.length !== 0 && searchText !== "" && (
+          <div className="container-handleChange">
+            <p>Nombre de résultats obtenus : {fetchedData?.total_results}</p>
+          </div>
+        )}
+        {searchText === "" && <i className="fi fi-ts-popcorn" />}
+        {searchText !== "" && fetchedData.results?.length === 0 && (
+          <p>Aucun film ne correspond à votre recherche</p>
+        )}
+        <>
+          {data &&
+            searchText !== "" &&
+            data?.map((objResults) => (
+              <>
+                <h1 className={`page-start-${objResults.page}`}>
+                  Page : {objResults.page} sur {objResults.total_pages} -{" "}
+                  <em>{objResults.results?.length} résultats</em>
+                </h1>
+                <div className="grid-container-cards">
+                  {objResults?.results?.map((movie, i) => {
+                    // movie.resultNumb = i + 1 + (objResults.page - 1) * 20;
+                    return (
+                      <Card
+                        key={movie.id}
+                        originalTitle={movie?.original_title}
+                        poster={`https://image.tmdb.org/t/p/w500/${movie?.poster_path}`}
+                        overview={movie?.overview}
+                        voteAverage={movie?.vote_average}
+                        filmid={movie?.id}
+                        title={movie?.title}
+                        resultNumber={
+                          i + 1 + (objResults.page - 1) * 20 + " sur " + fetchedData?.total_results
+                        }
+                      />
+                    );
+                  })}{" "}
+                </div>
+              </>
+            ))}
+        </>
+        <div className="observer" style={{ minHeight: "10dvh" }}>
+          {isLoading && searchText && <h1>En chargement...</h1>}
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 
