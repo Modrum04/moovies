@@ -9,14 +9,14 @@ function Home() {
   const [nanard, setNanard] = useState({});
   const [randomPage, setRandomPage] = useState(1);
 
-  const { data: dataNanard, isLoading: isLoading1 } = fetchData("discover", {
+  const { fetchedData: dataNanard, isLoading: isLoading1 } = fetchData("discover", {
     sort_by: "popularity.asc",
     "vote_average.lte": 3,
     "vote_count.gte": 20,
     page: randomPage,
   });
 
-  const { data: dataPopular, isLoading: isLoading2 } = fetchData("discover", {
+  const { fetchedData: dataPopular, isLoading: isLoading2 } = fetchData("discover", {
     sort_by: "popularity.dsc",
     page: randomPage,
   });

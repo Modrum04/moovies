@@ -1,49 +1,54 @@
 import "./Filter.scss";
 import { useState } from "react";
-import { fetchData } from "../tools/fetchData";
+import { fetchData, useInfiniteScroll } from "../tools/fetchData";
 import FilterByGenre from "../components/FilterByGenre";
 import Card from "../components/Card";
 
 function Filter() {
   const [genre, setGenre] = useState([]);
-  const [pages, setPages] = useState(1);
-  const { data, isLoading } = fetchData("discover", {
+  const [currentPage, setCurrentPage] = useState(1);
+  const { fetchedData } = fetchData("discover", {
     sort_by: "popularity.dsc",
-    page: pages,
+    page: currentPage,
     with_genres: genre,
   });
-
-  const total = 500;
+  const { data, isLoading } = useInfiniteScroll(fetchedData, genre, currentPage, setCurrentPage);
 
   return (
     <>
       <div className="global-filter">
-        {pages > 1 && (
-          <button className="butbut-previous" type="button" onClick={() => setPages(pages - 1)}>
-            Précédent
-          </button>
-        )}
-
-        <FilterByGenre setGenre={setGenre} />
-        {pages < total && (
-          <button className="butbut-next" type="button" onClick={() => setPages(pages + 1)}>
-            Suivant
-          </button>
-        )}
+        <FilterByGenre setGenre={setGenre} setPage={setCurrentPage} />
       </div>
       <div className="filter-card-container">
-        {data.results &&
-          data.results.map((film) => (
-            <Card
-              key={film.id}
-              originalTitle={film?.original_title}
-              poster={`https://image.tmdb.org/t/p/w500/${film.poster_path}`}
-              overview={film.overview}
-              voteAverage={film.vote_average}
-              filmid={film.id}
-              title={film.title}
-            />
-          ))}
+        {data &&
+          data?.map((objResults) => (
+            <>
+              <h1 className={`page-start-${objResults.page}`}>
+                Page : {objResults.page} sur {objResults.total_pages} -{" "}
+                <em>{objResults.results?.length} résultats</em>
+              </h1>
+              <div className="grid-container-cards">
+                {objResults?.results?.map((movie, i) => {
+                  movie.resultNumb = i + 1 + (objResults.page - 1) * 20;
+                  return (
+                    <Card
+                      key={movie.id}
+                      originalTitle={movie?.original_title}
+                      poster={`https://image.tmdb.org/t/p/w500/${movie?.poster_path}`}
+                      overview={movie?.overview}
+                      voteAverage={movie?.vote_average}
+                      filmid={movie?.id}
+                      title={movie?.title}
+                      resultNumber={movie?.resultNumb + " sur " + fetchedData?.total_results}
+                    />
+                  );
+                })}{" "}
+              </div>
+            </>
+          ))}{" "}
+        <div className="observer" style={{ minHeight: "10dvh" }}>
+          {isLoading && <h1>En chargement...</h1>}
+        </div>
       </div>
     </>
   );

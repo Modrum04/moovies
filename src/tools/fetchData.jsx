@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
 const token = import.meta.env.VITE_MY_API_TOKEN;
 
@@ -44,7 +44,7 @@ const queryList = {
 };
 
 export function fetchData(selectedEndpoint, queryOptions = {}) {
-  const [data, setData] = useState({});
+  const [fetchedData, setfetchedData] = useState({});
   const [isLoading, setIsloading] = useState(true);
 
   const queryString = () => {
@@ -66,13 +66,63 @@ export function fetchData(selectedEndpoint, queryOptions = {}) {
       fetch(`https://api.themoviedb.org/3/${queryString()}`, options)
         .then((response) => response.json())
         .then((data) => {
-          setData(data);
+          setfetchedData(data);
           setIsloading(false);
         });
     } catch (error) {
       console.error(error);
     }
   }, [queryString()]);
+
+  return { fetchedData, isLoading };
+}
+
+export function useInfiniteScroll(fetchedData, useSource, currentPage, setCurrentPage) {
+  const [data, setData] = useState([]);
+  const [isLoading, setIsloading] = useState(false);
+  const observer = useRef();
+
+  useEffect(() => {
+    setData([]);
+  }, [useSource]);
+
+  useEffect(() => {
+    if (!fetchedData.results || fetchedData.results.length === 0) {
+      setData([]);
+    } else if (fetchedData.results) {
+      setData((prev) => [...prev, fetchedData]);
+    }
+  }, [fetchedData]);
+
+  useEffect(() => {
+    if (fetchedData.total_pages < 2) return;
+
+    const options = {
+      root: null,
+      rootMargin: "0px",
+      threshold: 1,
+    };
+
+    const handleIntersection = (entries) => {
+      const target = entries[0];
+      if (target.isIntersecting && currentPage < fetchedData.total_pages && !isLoading) {
+        setIsloading(true);
+        setTimeout(() => {
+          setCurrentPage(currentPage + 1);
+          setIsloading(false);
+        }, 500);
+      }
+    };
+
+    observer.current = new IntersectionObserver(handleIntersection, options);
+    observer.current.observe(document.querySelector(".observer"));
+
+    return () => {
+      if (observer.current) {
+        observer.current.disconnect();
+      }
+    };
+  }, [data]);
 
   return { data, isLoading };
 }

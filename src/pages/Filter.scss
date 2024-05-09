@@ -36,6 +36,7 @@ $spacingDouble: $spacing * 2;
   padding: $spacing;
   max-width: 100%;
   display: grid;
+  min-height: 85dvh;
   @include mq() {
     grid-template-columns: 1fr 1fr;
     gap: $spacingDouble;

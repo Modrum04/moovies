@@ -1,62 +1,22 @@
 import SearchBar from "../components/SearchBar";
 import { useState, useEffect, useRef } from "react";
-import { fetchData } from "../tools/fetchData";
+import { fetchData, useInfiniteScroll } from "../tools/fetchData";
 import Card from "../components/Card";
 import "./SearchPage.scss";
 
 function SearchPage() {
   const [searchText, setSearchText] = useState("");
   const [currentPage, setCurrentPage] = useState(0);
-  const [data, setData] = useState([]);
-  const [isLoading, setIsloading] = useState(false);
-  const { data: fetchedData } = fetchData("search", {
+  const { fetchedData } = fetchData("search", {
     query: searchText,
     page: currentPage,
   });
-  const observer = useRef();
-
-  useEffect(() => {
-    setData([]);
-  }, [searchText]);
-
-  useEffect(() => {
-    if (!fetchedData.results || fetchedData.results.length === 0) {
-      setData([]);
-    } else if (fetchedData.results) {
-      setData((prev) => [...prev, fetchedData]);
-    }
-  }, [fetchedData]);
-
-  useEffect(() => {
-    if (fetchedData.total_pages < 2) return;
-
-    const options = {
-      root: null,
-      rootMargin: "0px",
-      threshold: 1,
-    };
-
-    const handleIntersection = (entries) => {
-      const target = entries[0];
-      console.log(target);
-      if (target.isIntersecting && currentPage < fetchedData.total_pages && !isLoading) {
-        setIsloading(true);
-        setTimeout(() => {
-          setCurrentPage(currentPage + 1);
-          setIsloading(false);
-        }, 500);
-      }
-    };
-
-    observer.current = new IntersectionObserver(handleIntersection, options);
-    observer.current.observe(document.querySelector(".observer"));
-
-    return () => {
-      if (observer.current) {
-        observer.current.disconnect();
-      }
-    };
-  }, [data]);
+  const { data, isLoading } = useInfiniteScroll(
+    fetchedData,
+    searchText,
+    currentPage,
+    setCurrentPage,
+  );
 
   return (
     <>
