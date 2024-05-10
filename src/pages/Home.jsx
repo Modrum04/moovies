@@ -40,7 +40,6 @@ function Home() {
     </>
   ) : (
     <div className="home-page-container">
-      {console.log(popular)}
       <div className="presentation">
         <h2>Bienvenue sur Moovies Lib</h2>
         <h2>Votre cinémathèque</h2>
@@ -70,6 +69,7 @@ function Home() {
             voteAverage={nanard?.vote_average}
             filmid={nanard?.id}
             title={nanard?.title}
+            genres={nanard?.genre_ids}
           />
         </div>
         <div className="pepite">
@@ -81,6 +81,7 @@ function Home() {
             voteAverage={popular?.vote_average}
             filmid={popular?.id}
             title={popular?.title}
+            genres={popular?.genre_ids}
           />
         </div>
       </div>

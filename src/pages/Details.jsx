@@ -56,6 +56,7 @@ function Details() {
 
   return (
     <div className="details-container">
+      {" "}
       <h1>{fetchResults.original_title}</h1>
       {fetchResults.original_title !== fetchResults.title && <em>{fetchResults.title}</em>}
       <h2>Détails</h2>
@@ -181,7 +182,6 @@ function Details() {
           {moreCasting ? "Voir moins" : "Voir plus"}
         </button>
       </div>
-
       <div className="crew-casting-container">
         <h3>Equipe</h3>
         <div className="crew-casting">

@@ -7,6 +7,7 @@ import Details from "./pages/Details";
 import SearchPage from "./pages/SearchPage";
 import Filter from "./pages/Filter";
 import { ThemeContextProvider } from "./contexts/ThemeContext";
+import { GenreContextProvider } from "./contexts/GenreContext";
 import HeaderLayout from "./layouts/HeaderLayout";
 
 const router = createBrowserRouter([
@@ -39,7 +40,9 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <ThemeContextProvider>
-      <RouterProvider router={router} />
+      <GenreContextProvider>
+        <RouterProvider router={router} />
+      </GenreContextProvider>
     </ThemeContextProvider>
   </React.StrictMode>,
 );

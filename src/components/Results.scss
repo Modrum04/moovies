@@ -1,0 +1,31 @@
+$fontSize1: 1.5rem;
+$fontSize2: 1.25rem;
+$fontSize3: 1.1rem;
+$fontSize4: 0.8rem;
+$spacing: 8px;
+$spacingDouble: $spacing * 2;
+
+@mixin flexDisplay($direction: column, $align: center, $justify: center) {
+  display: flex;
+  flex-direction: $direction;
+  align-items: $align;
+  justify-content: $justify;
+  gap: $spacing;
+}
+
+@mixin mq($breakpoint: 768px) {
+  @media screen and (min-width: $breakpoint) {
+    @content;
+  }
+}
+
+.grid-container-cards {
+  display: grid;
+  gap: $spacingDouble;
+
+  @include mq() {
+    grid-template-columns: repeat(3, 1fr);
+    max-width: 100%;
+    gap: $spacingDouble;
+  }
+}

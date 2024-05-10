@@ -3,16 +3,30 @@ import "./Card.scss";
 import PropTypes from "prop-types";
 import { useContext } from "react";
 import { ThemeContext } from "../contexts/ThemeContext";
+import { GenreContext } from "../contexts/GenreContext";
 
-function Card({ originalTitle, poster, overview, voteAverage, title, filmid, resultNumber }) {
+function Card({
+  originalTitle,
+  poster,
+  overview,
+  voteAverage,
+  title,
+  filmid,
+  genres,
+  resultNumber,
+}) {
   const { theme } = useContext(ThemeContext);
+  const { fetchedGenre } = useContext(GenreContext);
   const noInformations = "Information non disponible";
+
+  function getGenreName(arrayOfId) {
+    return fetchedGenre?.filter((el) => arrayOfId?.includes(el.id)).map((el) => el.name);
+  }
+  const genresName = getGenreName(genres);
 
   function convertToStars(average) {
     const roundedValue = Math.round(average);
-
     const stars = "⭐".repeat(roundedValue);
-
     return stars;
   }
 
@@ -23,6 +37,10 @@ function Card({ originalTitle, poster, overview, voteAverage, title, filmid, res
       <div className="title-container">
         <h1 className="title">{originalTitle}</h1>
         {originalTitle !== title ? <em>{title}</em> : <br />}
+
+        <span>
+          {genresName?.map((genre, i, arr) => (i === arr.length - 1 ? genre : `${genre}, `))}
+        </span>
       </div>
       <div className="container-card">
         <img src={poster} alt="" className="images" />
