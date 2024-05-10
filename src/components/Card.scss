@@ -19,35 +19,37 @@ $spacingDouble: $spacing * 2;
   gap: $spacing;
 }
 
-.card {
+.card-container {
+  @include flexDisplay(column, start, space-around);
+
   min-height: 325px;
-  display: flex;
-  flex-direction: column;
   border-radius: 15px;
   gap: $spacingDouble * 2;
   padding: $spacingDouble;
-  justify-content: space-around;
   @include mq() {
     height: 580px;
+    max-width: 600px;
     padding: $spacingDouble * 2;
-  }
-  .title-container {
-    @include flexDisplay(column, flex-start, start);
-    gap: $spacingDouble;
   }
   &:hover {
     transition: all 250ms ease-in-out;
     border: solid 1px white;
   }
-}
-
-.title {
-  font-size: $fontSize1;
-  display: flex;
-  justify-content: start;
-  margin: 0;
-  @include mq() {
-    font-size: $fontSize1 * 1.3;
+  .title-container {
+    @include flexDisplay(column, flex-start, start);
+    gap: $spacingDouble;
+    .title {
+      font-size: $fontSize1;
+      @include mq() {
+        font-size: $fontSize1 * 1.3;
+      }
+    }
+  }
+  .cover-art-desc {
+    @include flexDisplay();
+    @include mq() {
+      @include flexDisplay(row, flex-start, space-around);
+    }
   }
 }
 
@@ -71,13 +73,6 @@ $spacingDouble: $spacing * 2;
   @include mq() {
     font-size: $fontSize4 * 1.3;
   }
-}
-
-.container-card {
-  display: flex;
-  justify-content: space-around;
-  gap: $spacingDouble * 2;
-  align-items: flex-start;
 }
 
 .info {

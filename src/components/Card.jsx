@@ -33,7 +33,7 @@ function Card({
   const starsString = convertToStars(voteAverage);
 
   return (
-    <div className={`themed-fiche ${theme} card`}>
+    <div className={`themed-fiche ${theme} card-container`}>
       <div className="title-container">
         <h1 className="title">{originalTitle}</h1>
         {originalTitle !== title ? <em>{title}</em> : <br />}
@@ -42,7 +42,7 @@ function Card({
           {genresName?.map((genre, i, arr) => (i === arr.length - 1 ? genre : `${genre}, `))}
         </span>
       </div>
-      <div className="container-card">
+      <div className="cover-art-desc">
         <img src={poster} alt="" className="images" />
         <div className="info">
           <h3>Synopsis</h3>
