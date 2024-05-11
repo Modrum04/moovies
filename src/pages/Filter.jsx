@@ -16,9 +16,14 @@ function Filter() {
 
   return (
     <div className="container-searchPage">
-      <div className="global-filter">
+      <div className="container-search-menu">
         <FilterByGenre setGenre={setGenre} setPage={setCurrentPage} />
       </div>
+      {data?.length !== 0 && (
+        <div className="container-handleChange" key={`${fetchedData?.total_results}`}>
+          <p>Nombre de résultats obtenus : {fetchedData?.total_results}</p>
+        </div>
+      )}
       <Results data={data} fetchedData={fetchedData} isLoading={isLoading} />
     </div>
   );

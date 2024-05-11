@@ -18,14 +18,24 @@ $spacingDouble: $spacing * 2;
     @content;
   }
 }
-
-.grid-container-cards {
-  display: grid;
-  gap: $spacingDouble;
-
-  @include mq() {
-    grid-template-columns: repeat(3, 1fr);
-    max-width: 100%;
+.results-container {
+  @include flexDisplay();
+  h4 {
+    font-size: $fontSize3;
+    font-weight: 300;
+    text-align: center;
+    em {
+      font-weight: 200;
+    }
+  }
+  .grid-container-cards {
+    display: grid;
     gap: $spacingDouble;
+
+    @include mq() {
+      grid-template-columns: repeat(3, 1fr);
+      max-width: 100%;
+      gap: $spacingDouble;
+    }
   }
 }

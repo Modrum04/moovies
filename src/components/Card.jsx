@@ -43,11 +43,11 @@ function Card({
         </span>
       </div>
       <div className="cover-art-desc">
-        <img src={poster} alt="" className="images" />
+        <img src={poster} alt="" />
         <div className="info">
           <h3>Synopsis</h3>
-          <p className="description">{overview || <em className="noinfo">{noInformations}</em>}</p>
-          <h3 className="vote">Note des spectateurs</h3>
+          <p className="description">{overview || <em>{noInformations}</em>}</p>
+          <h3>Note des spectateurs</h3>
           <p className="stars">{starsString}</p>
           <div className="details-btn">
             <Link to={`/details/${filmid}`}>
