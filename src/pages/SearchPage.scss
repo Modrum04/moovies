@@ -27,7 +27,7 @@ $spacingDouble: $spacing * 2;
   min-height: 85dvh;
   padding: $spacingDouble;
   .container-search-menu {
-    width: 100%;
+    width: 100dvw;
     position: sticky;
     top: 0;
     display: flex;
@@ -36,9 +36,6 @@ $spacingDouble: $spacing * 2;
     justify-content: center;
     gap: $spacingDouble;
     padding: $spacingDouble;
-    background-color: transparent;
-    backdrop-filter: blur(20px);
-    filter: drop-shadow(0 0 20px rgb(14, 20, 27));
   }
   .fi-ts-popcorn {
     position: absolute;

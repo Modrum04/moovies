@@ -43,14 +43,12 @@ $spacingDouble: $spacing * 2;
   }
   .cover-art-desc {
     @include flexDisplay();
-
     @include mq() {
       @include flexDisplay(row, flex-start, space-around);
       gap: 32px;
     }
     img {
       width: 100%;
-
       border-radius: 5%;
       @include mq() {
         max-width: 200px;

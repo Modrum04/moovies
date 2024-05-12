@@ -13,7 +13,13 @@ $shadowBox: 4px 4px 4px rgb(80, 80, 80);
     .container-search-menu {
       background-color: $backgroundColor;
     }
+    .container-search-menu {
+      background-color: transparent;
+      backdrop-filter: blur(20px);
+      filter: drop-shadow(0 0 20px $backgroundColor);
+    }
   }
+
   &.themed-fiche {
     background-color: $backgroundCardColor;
     color: $textColor;

@@ -26,7 +26,9 @@ $shadowBox: 4px 4px 15px rgb(255, 0, 110);
       text-shadow: 0px 0px 10px rgb(255, 0, 110);
     }
     .container-search-menu {
-      background-color: $backgroundColor;
+      background-color: transparent;
+      backdrop-filter: blur(20px);
+      filter: drop-shadow(0 0 20px $backgroundColor);
     }
   }
   .dropdown-menu {

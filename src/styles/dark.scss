@@ -13,7 +13,13 @@ $shadowBox: 4px 4px 4px rgb(0, 0, 0);
     h1 {
       text-shadow: 0px 0px 5px $shadowHover;
     }
+    .container-search-menu {
+      background-color: transparent;
+      backdrop-filter: blur(20px);
+      filter: drop-shadow(0 0 20px rgb(14, 20, 27));
+    }
   }
+
   .dropdown-menu {
     background-color: $backgroundCardColor;
     &:hover {
