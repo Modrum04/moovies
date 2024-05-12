@@ -5,7 +5,6 @@ import PropTypes from "prop-types";
 import { GenreContext } from "../contexts/GenreContext";
 
 function FilterByGenre({ setGenre, setPage }) {
-  // const { fetchedData, isLoading } = fetchData("filter");
   const { fetchedGenre } = useContext(GenreContext);
   const [changeTimeout, setChangeTimeout] = useState(null);
 

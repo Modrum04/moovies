@@ -5,7 +5,7 @@ import FilterByGenre from "../components/FilterByGenre";
 import Results from "../components/Results";
 
 function Filter() {
-  const [genre, setGenre] = useState([]);
+  const [genre, setGenre] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const { fetchedData } = fetchData("discover", {
     sort_by: "popularity.dsc",
@@ -18,6 +18,7 @@ function Filter() {
     <div className="container-searchPage">
       <div className="container-search-menu">
         <FilterByGenre setGenre={setGenre} setPage={setCurrentPage} />
+        {console.log(genre)}
       </div>
       {data?.length !== 0 && (
         <div className="container-handleChange" key={`${fetchedData?.total_results}`}>

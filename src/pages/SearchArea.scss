@@ -1,0 +1,14 @@
+.selector-search-system-container {
+  background-color: rgb(157, 54, 16);
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  .active-tab {
+    background-color: aqua;
+  }
+}
+.separator {
+  width: 80%;
+  padding: 0.5px;
+  background-color: black;
+}

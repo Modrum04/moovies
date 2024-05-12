@@ -6,6 +6,7 @@ import App from "./App";
 import Details from "./pages/Details";
 import SearchPage from "./pages/SearchPage";
 import Filter from "./pages/Filter";
+import SearchArea from "./pages/SearchArea";
 import { ThemeContextProvider } from "./contexts/ThemeContext";
 import { GenreContextProvider } from "./contexts/GenreContext";
 import HeaderLayout from "./layouts/HeaderLayout";
@@ -31,6 +32,7 @@ const router = createBrowserRouter([
         path: "/details/:filmid",
         element: <Details />,
       },
+      { path: "/search-area", element: <SearchArea /> },
     ],
   },
 ]);

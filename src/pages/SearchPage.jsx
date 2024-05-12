@@ -33,7 +33,6 @@ function SearchPage() {
       {searchText !== "" && fetchedData.results?.length === 0 && (
         <p>Aucun film ne correspond à votre recherche</p>
       )}
-
       <Results data={data} fetchedData={fetchedData} isLoading={isLoading} />
     </div>
   );
