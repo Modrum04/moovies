@@ -20,6 +20,10 @@ $spacingDouble: $spacing * 2;
 }
 .results-container {
   @include flexDisplay();
+  padding-inline: $spacing;
+  @include mq() {
+    padding-inline: $spacingDouble;
+  }
   h4 {
     font-size: $fontSize3;
     font-weight: 300;

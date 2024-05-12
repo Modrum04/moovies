@@ -105,6 +105,7 @@ export function useInfiniteScroll(fetchedData, useSource, currentPage, setCurren
 
     const handleIntersection = (entries) => {
       const target = entries[0];
+      console.log(entries);
       if (target.isIntersecting && currentPage < fetchedData.total_pages && !isLoading) {
         setIsloading(true);
         setTimeout(() => {
