@@ -1,14 +1,38 @@
-.selector-search-system-container {
-  background-color: rgb(157, 54, 16);
+$fontSize1: 1.5rem;
+$fontSize2: 1.25rem;
+$fontSize3: 1.1rem;
+$fontSize4: 0.8rem;
+$spacing: 8px;
+$spacingDouble: $spacing * 2;
+
+@mixin flexDisplay($direction: column, $align: center, $justify: center) {
   display: flex;
-  flex-direction: row;
-  gap: 16px;
-  .active-tab {
-    background-color: aqua;
+  flex-direction: $direction;
+  align-items: $align;
+  justify-content: $justify;
+  gap: $spacing;
+}
+
+@mixin mq($breakpoint: 768px) {
+  @media screen and (min-width: $breakpoint) {
+    @content;
   }
 }
-.separator {
-  width: 80%;
-  padding: 0.5px;
-  background-color: black;
+
+.container-search-area {
+  @include flexDisplay();
+  gap: 0;
+  .selector-search-system-container {
+    @include flexDisplay(row);
+    gap: 0;
+    button {
+      border-radius: 0%;
+    }
+    .active-tab {
+    }
+  }
+  .separator {
+    width: 80%;
+    padding: 0.5px;
+  }
 }

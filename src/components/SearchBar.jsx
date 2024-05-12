@@ -8,6 +8,7 @@ function SearchBar({ setSearch, search, setPage }) {
   const handleInputChange = (e) => {
     const text = e.target.value;
     setInputText(text);
+    setPage(1);
     window.scroll(0, 0);
     if (typingTimeout) {
       clearTimeout(typingTimeout);
@@ -15,7 +16,6 @@ function SearchBar({ setSearch, search, setPage }) {
 
     const newTypingTimeout = setTimeout(() => {
       setSearch(text);
-      setPage(1);
     }, 500);
 
     setTypingTimeout(newTypingTimeout);

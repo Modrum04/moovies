@@ -19,7 +19,29 @@ $shadowBox: 4px 4px 4px rgb(80, 80, 80);
       filter: drop-shadow(0 0 20px $backgroundColor);
     }
   }
-
+  .selector-search-system-container {
+    button {
+      background-color: $backgroundColor;
+      color: lighten($textColor, 70%);
+      &:hover {
+        filter: none;
+        background-color: darken($backgroundCardColor, 10%);
+        color: lighten($textColor, 50%);
+      }
+    }
+    .active-tab {
+      background: linear-gradient(to left, $backgroundColor, $backgroundCardColor);
+      color: $textColor;
+      cursor: unset;
+      &:hover {
+        background-color: $backgroundCardColor;
+        color: $textColor;
+      }
+    }
+  }
+  .separator {
+    background-color: lighten($textColor, 70%);
+  }
   &.themed-fiche {
     background-color: $backgroundCardColor;
     color: $textColor;

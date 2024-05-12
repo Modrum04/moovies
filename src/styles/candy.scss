@@ -30,6 +30,29 @@ $shadowBox: 4px 4px 15px rgb(255, 0, 110);
       backdrop-filter: blur(20px);
       filter: drop-shadow(0 0 20px $backgroundColor);
     }
+    .selector-search-system-container {
+      button {
+        background-color: $backgroundColor;
+        color: lighten($textColor, 50%);
+        &:hover {
+          filter: none;
+          background-color: $backgroundCardColor;
+          color: lighten(#ffbe0b, 50%);
+        }
+      }
+      .active-tab {
+        background: linear-gradient(to left, $backgroundColor, $backgroundCardColor);
+        color: lighten($textColor, 70%);
+        cursor: unset;
+        &:hover {
+          background-color: $backgroundCardColor;
+          color: lighten($textColor, 70%);
+        }
+      }
+    }
+    .separator {
+      background-color: lighten($textColor, 70%);
+    }
   }
   .dropdown-menu {
     color: $textColor;

@@ -18,6 +18,7 @@ function Results({ data, fetchedData, isLoading }) {
                   <Card
                     key={movie.id}
                     originalTitle={movie?.original_title}
+                    date={movie?.release_date}
                     poster={`https://image.tmdb.org/t/p/w500/${movie?.poster_path}`}
                     overview={movie?.overview}
                     voteAverage={movie?.vote_average}

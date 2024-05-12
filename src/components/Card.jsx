@@ -7,6 +7,7 @@ import { GenreContext } from "../contexts/GenreContext";
 
 function Card({
   originalTitle,
+  date,
   poster,
   overview,
   voteAverage,
@@ -34,10 +35,12 @@ function Card({
 
   return (
     <div className={`themed-fiche ${theme} card-container`}>
-      <div className="title-container">
-        <h1 className="title">{originalTitle}</h1>
-        {originalTitle !== title ? <em>{title}</em> : <br />}
-
+      <div className="header-card-container">
+        <div className="title-container">
+          <h1 className="title">{originalTitle}</h1>
+          {originalTitle !== title ? <em>{title}</em> : <br />}
+        </div>
+        <div className="year-release"> {date?.split("-")[0]}</div>
         <span>
           {genresName?.map((genre, i, arr) => (i === arr.length - 1 ? genre : `${genre}, `))}
         </span>

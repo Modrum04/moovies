@@ -30,17 +30,23 @@ $spacingDouble: $spacing * 2;
     max-width: 600px;
     padding: $spacingDouble * 2;
   }
-
-  .title-container {
+  .header-card-container {
     @include flexDisplay(column, flex-start, start);
-    gap: $spacingDouble;
-    .title {
-      font-size: $fontSize1;
-      @include mq() {
-        font-size: $fontSize1 * 1.3;
+    gap: $spacing;
+    .title-container {
+      .title {
+        font-size: $fontSize1;
+        @include mq() {
+          font-size: $fontSize1 * 1.3;
+        }
       }
     }
+    .year-release,
+    span {
+      font-weight: 200;
+    }
   }
+
   .cover-art-desc {
     @include flexDisplay();
     @include mq() {

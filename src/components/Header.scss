@@ -38,13 +38,18 @@ header {
       font-weight: 100;
     }
   }
+  a {
+    text-decoration: none;
+    overflow: hidden;
+  }
   .logo {
-    border-radius: 50%;
     max-width: 64px;
+    font-size: 2rem;
     @include mq() {
       max-width: 128px;
       position: relative;
       z-index: 1;
+      font-size: 8rem;
     }
   }
 }

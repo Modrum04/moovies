@@ -28,7 +28,6 @@ $spacingDouble: $spacing * 2;
 .presentation {
   h2 {
     padding-bottom: $spacingDouble * 2;
-    display: flex;
     text-align: center;
   }
 }
@@ -83,11 +82,10 @@ $spacingDouble: $spacing * 2;
 }
 
 .description-site {
-  display: flex;
   max-width: 70%;
   line-height: 2rem;
   font-size: $fontSize3;
-
+  text-align: center;
   @include mq() {
     font-size: $fontSize3 * 1.3;
   }

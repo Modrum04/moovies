@@ -41,29 +41,27 @@ function Home() {
   ) : (
     <div className="home-page-container">
       <div className="presentation">
-        <h2>Bienvenue sur Moovies Lib</h2>
+        <h2>Bienvenue sur Moovies</h2>
         <h2>Votre cinémathèque</h2>
         <p className="description-site">
-          Découvrez Moovies Lib, la plateforme pour les amateurs de films, conçue pour explorer en
-          profondeur vos œuvres cinématographiques préférées, et en découvrir de nouvelles grace à
-          la richesse de The Movie Data Base.
+          Découvrez Moovies, un moteur de recherche de films exploitant toute la richesse de The
+          Movie Data Base.
         </p>
       </div>
 
       <div className="direction">
-        <Link to="/search">
-          <button type="button">Je sais ce que je veux !</button>
-        </Link>
-        <Link to="/filter">
-          <button type="button">Guide moi</button>
+        <Link to="/search-area">
+          <button type="button">Entrer</button>
         </Link>
       </div>
-      <h2 className="selection">Sélection du jour!</h2>
+      <h2 className="selection">La pioche</h2>
       <div className="container-cards">
         <div className="nanar">
           <h2 className="title-card">Le Nanard</h2>
+
           <Card
             originalTitle={nanard?.original_title}
+            date={nanard?.release_date}
             poster={`https://image.tmdb.org/t/p/w500/${nanard?.poster_path}`}
             overview={nanard?.overview}
             voteAverage={nanard?.vote_average}
@@ -76,6 +74,7 @@ function Home() {
           <h2 className="title-card">L'incontournable</h2>
           <Card
             originalTitle={popular?.original_title}
+            date={popular?.release_date}
             poster={`https://image.tmdb.org/t/p/w500/${popular?.poster_path}`}
             overview={popular?.overview}
             voteAverage={popular?.vote_average}
