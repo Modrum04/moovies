@@ -18,7 +18,6 @@ function Filter() {
     <div className="container-searchPage">
       <div className="container-search-menu">
         <FilterByGenre setGenre={setGenre} setPage={setCurrentPage} />
-        {console.log(genre)}
       </div>
       {data?.length !== 0 && (
         <div className="container-handleChange" key={`${fetchedData?.total_results}`}>

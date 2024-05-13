@@ -46,10 +46,15 @@ function Card({
         </span>
       </div>
       <div className="cover-art-desc">
-        <img src={poster} alt="" />
+        {poster !== null && <img src={`https://image.tmdb.org/t/p/w500/${poster}`} alt="" />}
         <div className="info">
           <h3>Synopsis</h3>
-          <p className="description">{overview || <em>{noInformations}</em>}</p>
+          <p className="description">
+            {overview
+              ?.split(" ")
+              .filter((el) => !el.includes("http"))
+              .join(" ") || <em>{noInformations}</em>}
+          </p>
           <h3>Note des spectateurs</h3>
           <p className="stars">{starsString}</p>
           <div className="details-btn">

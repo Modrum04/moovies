@@ -4,6 +4,7 @@ import "./Results.scss";
 function Results({ data, fetchedData, isLoading }) {
   return (
     <>
+      {console.log(data)}
       {data &&
         data?.map((objResults, i) => (
           <div className="results-container" key={`data-${objResults.page}-${i}`}>
@@ -19,7 +20,7 @@ function Results({ data, fetchedData, isLoading }) {
                     key={movie.id}
                     originalTitle={movie?.original_title}
                     date={movie?.release_date}
-                    poster={`https://image.tmdb.org/t/p/w500/${movie?.poster_path}`}
+                    poster={movie?.poster_path}
                     overview={movie?.overview}
                     voteAverage={movie?.vote_average}
                     filmid={movie?.id}
@@ -32,7 +33,7 @@ function Results({ data, fetchedData, isLoading }) {
             </div>
           </div>
         ))}
-      <div className="observer" style={{ minHeight: "10dvh" }}>
+      <div className="observer" style={{ minHeight: "10dvh", backgroundColor: "blue" }}>
         {isLoading && <h1>En chargement...</h1>}
       </div>
     </>

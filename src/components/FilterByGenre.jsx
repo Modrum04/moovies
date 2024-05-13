@@ -28,7 +28,7 @@ function FilterByGenre({ setGenre, setPage }) {
     <div className="dropdown-menu">
       <i className="fi fi-rr-settings-sliders" />
       <select className="FiltreStyle" onChange={handleInputChange}>
-        <option value={[]}>Tous les genres</option>
+        <option value={""}>Tous les genres</option>
         {fetchedGenre?.map((genre) => (
           <option key={genre.id} value={genre.id}>
             {genre.name}

@@ -43,7 +43,7 @@ const queryList = {
   },
 };
 
-export function fetchData(selectedEndpoint, queryOptions = {}) {
+export function fetchData(selectedEndpoint, queryOptions = {}, source) {
   const [fetchedData, setfetchedData] = useState({});
   const [isLoading, setIsloading] = useState(true);
 
@@ -62,6 +62,10 @@ export function fetchData(selectedEndpoint, queryOptions = {}) {
   };
 
   useEffect(() => {
+    if (source === "") {
+      return;
+    }
+
     try {
       fetch(`https://api.themoviedb.org/3/${queryString()}`, options)
         .then((response) => response.json())
@@ -100,16 +104,15 @@ export function useInfiniteScroll(fetchedData, useSource, currentPage, setCurren
     const options = {
       root: null,
       rootMargin: "0px",
-      threshold: 1,
+      threshold: 0,
     };
 
     const handleIntersection = (entries) => {
       const target = entries[0];
-      console.log(entries);
       if (target.isIntersecting && currentPage < fetchedData.total_pages && !isLoading) {
         setIsloading(true);
         setTimeout(() => {
-          setCurrentPage(currentPage + 1);
+          setCurrentPage((prev) => prev + 1);
           setIsloading(false);
         }, 500);
       }

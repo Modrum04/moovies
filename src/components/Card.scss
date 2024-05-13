@@ -23,7 +23,7 @@ $spacingDouble: $spacing * 2;
   @include flexDisplay(column, start, space-around);
   min-height: 325px;
   border-radius: 15px;
-  gap: $spacingDouble * 2;
+  gap: $spacingDouble;
   padding: $spacingDouble;
   @include mq() {
     height: 580px;
@@ -37,7 +37,7 @@ $spacingDouble: $spacing * 2;
       .title {
         font-size: $fontSize1;
         @include mq() {
-          font-size: $fontSize1 * 1.3;
+          font-size: $fontSize1 * 1.1;
         }
       }
     }
@@ -49,6 +49,8 @@ $spacingDouble: $spacing * 2;
 
   .cover-art-desc {
     @include flexDisplay();
+    width: 100%;
+    min-height: 345px;
     @include mq() {
       @include flexDisplay(row, flex-start, space-around);
       gap: 32px;
@@ -61,11 +63,14 @@ $spacingDouble: $spacing * 2;
       }
     }
     .info {
-      @include flexDisplay();
+      @include flexDisplay(column, center, space-between);
       gap: $spacingDouble;
       width: 100%;
+      min-height: 345px;
       h3 {
         padding: 0;
+        text-wrap: wrap;
+        text-align: center;
       }
       .description {
         line-height: 1.5;
@@ -74,15 +79,11 @@ $spacingDouble: $spacing * 2;
         -webkit-line-clamp: 5;
         overflow: hidden;
         font-size: $fontSize4;
+        text-wrap: wrap;
         @include mq() {
-          font-size: $fontSize4 * 1.3;
+          font-size: $fontSize4 * 1.2;
         }
       }
-
-      h3 {
-        text-wrap: wrap;
-      }
-
       .stars {
         font-size: $fontSize4;
 

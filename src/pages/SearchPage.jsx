@@ -8,10 +8,15 @@ import Results from "../components/Results";
 function SearchPage() {
   const [searchText, setSearchText] = useState("");
   const [currentPage, setCurrentPage] = useState(0);
-  const { fetchedData } = fetchData("search", {
-    query: searchText,
-    page: currentPage,
-  });
+  const { fetchedData } = fetchData(
+    "search",
+    {
+      query: searchText,
+      page: currentPage,
+    },
+    searchText,
+  );
+
   const { data, isLoading } = useInfiniteScroll(
     fetchedData,
     searchText,
