@@ -93,7 +93,9 @@ export function useInfiniteScroll(fetchedData, useSource, currentPage, setCurren
   useEffect(() => {
     if (!fetchedData.results || fetchedData.results.length === 0) {
       setData([]);
-    } else if (fetchedData.results) {
+    } else if (fetchedData.page === 1) {
+      setData([fetchedData]);
+    } else {
       setData((prev) => [...prev, fetchedData]);
     }
   }, [fetchedData]);
@@ -109,6 +111,7 @@ export function useInfiniteScroll(fetchedData, useSource, currentPage, setCurren
 
     const handleIntersection = (entries) => {
       const target = entries[0];
+      console.log(entries);
       if (target.isIntersecting && currentPage < fetchedData.total_pages && !isLoading) {
         setIsloading(true);
         setTimeout(() => {

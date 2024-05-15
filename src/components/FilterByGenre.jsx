@@ -1,6 +1,5 @@
 import "./FilterByGenre.scss";
 import { useContext, useState } from "react";
-import { fetchData } from "../tools/fetchData";
 import PropTypes from "prop-types";
 import { GenreContext } from "../contexts/GenreContext";
 
@@ -27,7 +26,13 @@ function FilterByGenre({ setGenre, setPage }) {
   return (
     <div className="dropdown-menu">
       <i className="fi fi-rr-settings-sliders" />
-      <select className="FiltreStyle" onChange={handleInputChange}>
+      <select
+        className="FiltreStyle"
+        onChange={(e) => {
+          handleInputChange(e);
+          console.log("déclencheur composant");
+        }}
+      >
         <option value={""}>Tous les genres</option>
         {fetchedGenre?.map((genre) => (
           <option key={genre.id} value={genre.id}>

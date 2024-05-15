@@ -42,5 +42,4 @@ function SearchPage() {
     </div>
   );
 }
-
 export default SearchPage;

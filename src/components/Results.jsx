@@ -4,7 +4,6 @@ import "./Results.scss";
 function Results({ data, fetchedData, isLoading }) {
   return (
     <>
-      {console.log(data)}
       {data &&
         data?.map((objResults, i) => (
           <div className="results-container" key={`data-${objResults.page}-${i}`}>

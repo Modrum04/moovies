@@ -1,5 +1,5 @@
 import "./Filter.scss";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { fetchData, useInfiniteScroll } from "../tools/fetchData";
 import FilterByGenre from "../components/FilterByGenre";
 import Results from "../components/Results";
