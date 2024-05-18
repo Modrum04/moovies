@@ -11,6 +11,8 @@ function FilterByGenre({ setGenre, setPage }) {
   useEffect(() => {
     const lastSelected = JSON.parse(localStorage.getItem("SELECT_VALUE_KEY") ?? "[]");
     setSelected(lastSelected);
+    setGenre(lastSelected);
+    setPage(1);
   }, []);
 
   const handleInputChange = (e) => {
@@ -27,8 +29,8 @@ function FilterByGenre({ setGenre, setPage }) {
     }, 250);
 
     setChangeTimeout(newChangeTimeout);
-    localStorage.setItem("SELECT_VALUE_KEY", JSON.stringify(e.target.value));
-    setSelected(e.target.value);
+    localStorage.setItem("SELECT_VALUE_KEY", JSON.stringify(value));
+    setSelected(value);
   };
 
   return (
