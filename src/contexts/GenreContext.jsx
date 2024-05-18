@@ -13,6 +13,6 @@ export function GenreContextProvider({ children }) {
   return <GenreContext.Provider value={genreValue}>{children}</GenreContext.Provider>;
 }
 
-GenreContextProvider.propTypes = {
-  children: PropTypes.node.isRequired,
-};
+// GenreContextProvider.propTypes = {
+//   children: PropTypes.node.isRequired,
+// };

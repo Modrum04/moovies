@@ -14,7 +14,7 @@ const queryList = {
   discover: {
     endPoint: "discover/movie?",
     defaultQueryOptions: {
-      include_adult: false,
+      include_adult: true,
       include_video: true,
       language: "fr",
       page: 1,
@@ -33,7 +33,7 @@ const queryList = {
     endPoint: "search/movie?",
     defaultQueryOptions: {
       query: "",
-      include_adult: false,
+      include_adult: true,
       language: "fr",
       page: 1,
       "vote_average.lte": 10,
@@ -87,10 +87,6 @@ export function useInfiniteScroll(fetchedData, useSource, currentPage, setCurren
   const observer = useRef();
 
   useEffect(() => {
-    setData([]);
-  }, [useSource]);
-
-  useEffect(() => {
     if (!fetchedData.results || fetchedData.results.length === 0) {
       setData([]);
     } else if (fetchedData.page === 1) {
@@ -111,7 +107,6 @@ export function useInfiniteScroll(fetchedData, useSource, currentPage, setCurren
 
     const handleIntersection = (entries) => {
       const target = entries[0];
-      console.log(entries);
       if (target.isIntersecting && currentPage < fetchedData.total_pages && !isLoading) {
         setIsloading(true);
         setTimeout(() => {

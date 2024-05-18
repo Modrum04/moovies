@@ -53,13 +53,13 @@ function PersonCard({ person }) {
     </div>
   );
 }
-PersonCard.propTypes = {
-  person: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    job: PropTypes.string,
-    character: PropTypes.string,
-    profile_path: PropTypes.string,
-  }).isRequired,
-};
+// PersonCard.propTypes = {
+//   person: PropTypes.shape({
+//     name: PropTypes.string.isRequired,
+//     job: PropTypes.string,
+//     character: PropTypes.string,
+//     profile_path: PropTypes.string,
+//   }).isRequired,
+// };
 
 export default PersonCard;

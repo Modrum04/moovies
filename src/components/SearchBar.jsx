@@ -1,9 +1,19 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./SearchBar.scss";
 
 function SearchBar({ setSearch, search, setPage }) {
   const [inputText, setInputText] = useState(search);
   const [typingTimeout, setTypingTimeout] = useState(null);
+
+  useEffect(() => {
+    const localValue = sessionStorage.getItem("search", JSON.stringify(search));
+
+    if (localValue && localValue.search !== "") {
+      setInputText(localValue);
+      setSearch(localValue);
+      setPage(1);
+    }
+  }, []);
 
   const handleInputChange = (e) => {
     const text = e.target.value;
@@ -19,6 +29,13 @@ function SearchBar({ setSearch, search, setPage }) {
     }, 500);
 
     setTypingTimeout(newTypingTimeout);
+
+    if (text === "") {
+      sessionStorage.removeItem("search");
+      setPage(0);
+    }
+
+    text !== "" && sessionStorage.setItem("search", text);
   };
 
   return (

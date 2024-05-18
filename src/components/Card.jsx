@@ -71,13 +71,13 @@ function Card({
   );
 }
 
-Card.propTypes = {
-  title: PropTypes.string.isRequired,
-  originalTitle: PropTypes.string.isRequired,
-  poster: PropTypes.string.isRequired,
-  overview: PropTypes.string.isRequired,
-  voteAverage: PropTypes.number.isRequired,
-  filmid: PropTypes.number.isRequired,
-};
+// Card.propTypes = {
+//   title: PropTypes.string.isRequired,
+//   originalTitle: PropTypes.string.isRequired,
+//   poster: PropTypes.string.isRequired,
+//   overview: PropTypes.string.isRequired,
+//   voteAverage: PropTypes.number.isRequired,
+//   filmid: PropTypes.number.isRequired,
+// };
 
 export default Card;
