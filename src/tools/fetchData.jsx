@@ -41,6 +41,12 @@ const queryList = {
       sort_by: "popularity.asc",
     },
   },
+  person: {
+    endPoint: "person/",
+    defaultQueryOptions: {
+      language: "fr",
+    },
+  },
 };
 
 export function fetchData(selectedEndpoint, queryOptions = {}, source) {

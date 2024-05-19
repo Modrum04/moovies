@@ -1,14 +1,20 @@
 import { useContext } from "react";
 import PropTypes from "prop-types";
 import { ThemeContext } from "../contexts/ThemeContext";
+import { Link } from "react-router-dom";
 import "./PersonCard.scss";
+import PersonProfilImage from "./PersonProfilImage";
+import PersonNoProfilImage from "./PersonNoProfilImage";
 
 function PersonCard({ person }) {
+  const blabl = 488;
+  // 4165
   const { theme } = useContext(ThemeContext);
-  const { character, name, job } = person;
+  const { character, name, job, profile_path, id } = person;
   const noInformations = "Information non disponible";
   return (
-    <div className={`themed-fiche ${theme} person-container`}>
+    <Link className={`themed-fiche ${theme} person-container`} to={`/person/${id}`}>
+      {/* <div className={`themed-fiche ${theme} person-container`}> */}
       <div className="person-description">
         <p>
           {job ? `Job : ` : `Role : `}
@@ -18,39 +24,13 @@ function PersonCard({ person }) {
           Nom : <span>{name}</span>{" "}
         </p>
       </div>
-      {person.profile_path ? (
-        <>
-          <br />{" "}
-          <div className="person-img-container">
-            <img
-              className="person-img"
-              src={`https://image.tmdb.org/t/p/w500/${person.profile_path}`}
-              alt={`img-person-${person.profile_path}`}
-            />
-          </div>
-        </>
+      {profile_path ? (
+        <PersonProfilImage profilPath={profile_path} />
       ) : (
-        <div className="person-img-container">
-          <svg width="80" height="80">
-            <circle cx="50%" cy="50%" r="50%" fill="#aeaeae" />
-            <text
-              x="50%"
-              y="50%"
-              textAnchor="middle"
-              fill="white"
-              fontSize="2rem"
-              fontFamily="Arial"
-              dy=".3em"
-            >
-              {name
-                .split(" ")
-                .map((w) => w.charAt(0))
-                .join("")}
-            </text>
-          </svg>
-        </div>
+        <PersonNoProfilImage name={name} />
       )}
-    </div>
+      {/* </div> */}
+    </Link>
   );
 }
 // PersonCard.propTypes = {

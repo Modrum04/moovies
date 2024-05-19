@@ -21,9 +21,7 @@ $spacingDouble: $spacing * 2;
 
 .person-container {
   @include flexDisplay(row-reverse, center, flex-end);
-
   padding: $spacing;
-
   border-radius: 10px;
   width: 100%;
   min-height: 128px;
@@ -31,6 +29,7 @@ $spacingDouble: $spacing * 2;
     max-width: 356px;
     min-height: 140px;
   }
+
   .person-img-container {
     max-width: 80px;
     width: 50%;

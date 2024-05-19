@@ -10,6 +10,7 @@ import SearchArea from "./pages/SearchArea";
 import { ThemeContextProvider } from "./contexts/ThemeContext";
 import { GenreContextProvider } from "./contexts/GenreContext";
 import HeaderLayout from "./layouts/HeaderLayout";
+import Person from "./pages/Person";
 
 const router = createBrowserRouter([
   {
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
       {
         path: "/details/:filmid",
         element: <Details />,
+      },
+      {
+        path: "/person/:personid",
+        element: <Person />,
       },
       { path: "/search-area", element: <SearchArea /> },
     ],

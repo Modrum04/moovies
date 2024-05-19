@@ -9,7 +9,7 @@ function FilterByGenre({ setGenre, setPage }) {
   const [selected, setSelected] = useState([]);
 
   useEffect(() => {
-    const lastSelected = JSON.parse(localStorage.getItem("SELECT_VALUE_KEY") ?? "[]");
+    const lastSelected = JSON.parse(sessionStorage.getItem("SELECT_VALUE_KEY") ?? "[]");
     setSelected(lastSelected);
     setGenre(lastSelected);
     setPage(1);
@@ -29,7 +29,7 @@ function FilterByGenre({ setGenre, setPage }) {
     }, 250);
 
     setChangeTimeout(newChangeTimeout);
-    localStorage.setItem("SELECT_VALUE_KEY", JSON.stringify(value));
+    sessionStorage.setItem("SELECT_VALUE_KEY", JSON.stringify(value));
     setSelected(value);
   };
 
