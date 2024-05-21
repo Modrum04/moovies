@@ -24,10 +24,14 @@ function Person() {
   const { fetchedData, isLoading } = fetchData("person", {
     [personid]: "?",
   });
+  const { fetchedData: fetchedFilmo, isLoading: isLoadingFilmo } = fetchData("filmo", {
+    [personid]: "",
+  });
 
   return (
     <div>
-      {console.log(fetchedData)}
+      {/* {console.log(fetchedData)} */}
+      {console.log(fetchedFilmo)}
       <h1>{fetchedData.name}</h1>
       {fetchedData.also_known_as && fetchedData.also_known_as.length > 0 && (
         <>
@@ -60,6 +64,44 @@ function Person() {
         <PersonProfilImage profilPath={fetchedData.profile_path} />
       ) : (
         <PersonNoProfilImage name={fetchedData.name} />
+      )}
+      {fetchedData.place_of_birth ? (
+        <div>
+          {fetchedData.gender === 1 ? "Née" : "Né"} à {fetchedData.place_of_birth}{" "}
+        </div>
+      ) : (
+        <div>"Lieu de naissance inconnu" </div>
+      )}
+      <div>
+        {fetchedData.biography !== "" ? fetchedData.biography : "Biographie non renseignée"}
+      </div>
+      <div>
+        {fetchedData.known_for_departement !== ""
+          ? `Principalement ${fetchedData.gender === 1 ? "connue" : "connu"} en tant que ${fetchedData.known_for_department}`
+          : "Biographie non renseignée"}
+      </div>
+      <h2>Filmographie :</h2>
+      {fetchedFilmo.cast?.length > 0 && (
+        <ul>
+          <h3>Dans le casting :</h3>{" "}
+          {fetchedFilmo.cast?.map((obj) => (
+            <li>
+              {obj.name || obj.original_title}
+
+              {obj.character !== "" && <span> - Rôle : {obj.character}</span>}
+            </li>
+          ))}
+        </ul>
+      )}
+      {fetchedFilmo.cast?.length > 0 && (
+        <ul>
+          <h3>Dans l'équipe :</h3>
+          {fetchedFilmo.crew?.map((obj) => (
+            <li>
+              {obj.name || obj.original_title} {obj.job !== "" && <span>- Job : {obj.job}</span>}
+            </li>
+          ))}
+        </ul>
       )}
     </div>
   );

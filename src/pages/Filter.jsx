@@ -8,7 +8,7 @@ function Filter() {
   const [genre, setGenre] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const { fetchedData } = fetchData("discover", {
-    sort_by: "popularity.dsc",
+    sort_by: "popularity.asc",
     page: currentPage,
     with_genres: genre,
   });

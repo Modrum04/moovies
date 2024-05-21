@@ -14,9 +14,9 @@ const queryList = {
   discover: {
     endPoint: "discover/movie?",
     defaultQueryOptions: {
-      include_adult: true,
+      include_adult: false,
       include_video: true,
-      language: "fr",
+      language: "fr-FR",
       page: 1,
       "vote_average.lte": 10,
       "vote_count.gte": 20,
@@ -26,15 +26,15 @@ const queryList = {
   filter: {
     endPoint: "genre/movie/list?",
     defaultQueryOptions: {
-      language: "fr",
+      language: "fr-FR",
     },
   },
   search: {
     endPoint: "search/movie?",
     defaultQueryOptions: {
       query: "",
-      include_adult: true,
-      language: "fr",
+      include_adult: false,
+      language: "fr-FR",
       page: 1,
       "vote_average.lte": 10,
       "vote_count.gte": 20,
@@ -44,7 +44,14 @@ const queryList = {
   person: {
     endPoint: "person/",
     defaultQueryOptions: {
-      language: "fr",
+      language: "fr-FR",
+    },
+  },
+  filmo: {
+    endPoint: "person/",
+    defaultQueryOptions: {
+      "/combined_credits": "?",
+      language: "fr-FR",
     },
   },
 };
@@ -62,7 +69,7 @@ export function fetchData(selectedEndpoint, queryOptions = {}, source) {
     return (
       queryList[selectedEndpoint].endPoint +
       Object.entries(finalQueryOptions)
-        .map(([key, value]) => `${key}=${value}`)
+        .map(([key, value]) => (value !== "?" ? `${key}=${value}` : key + "?"))
         .join("&")
     );
   };
