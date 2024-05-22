@@ -1,10 +1,10 @@
 import { useParams } from "react-router-dom";
 import { fetchData } from "../tools/fetchData";
-import { useState, useEffect } from "react";
-import PersonCard from "../components/PersonCard";
+import { useState } from "react";
 import PersonNoProfilImage from "../components/PersonNoProfilImage";
 import PersonProfilImage from "../components/PersonProfilImage";
 import "./Details.scss";
+import Filmo from "../components/Filmo";
 
 function Person() {
   const { personid } = useParams();
@@ -30,7 +30,6 @@ function Person() {
 
   return (
     <div>
-      {/* {console.log(fetchedData)} */}
       {console.log(fetchedFilmo)}
       <h1>{fetchedData.name}</h1>
       {fetchedData.also_known_as && fetchedData.also_known_as.length > 0 && (
@@ -80,29 +79,9 @@ function Person() {
           ? `Principalement ${fetchedData.gender === 1 ? "connue" : "connu"} en tant que ${fetchedData.known_for_department}`
           : "Biographie non renseignée"}
       </div>
-      <h2>Filmographie :</h2>
-      {fetchedFilmo.cast?.length > 0 && (
-        <ul>
-          <h3>Dans le casting :</h3>{" "}
-          {fetchedFilmo.cast?.map((obj) => (
-            <li>
-              {obj.name || obj.original_title}
-
-              {obj.character !== "" && <span> - Rôle : {obj.character}</span>}
-            </li>
-          ))}
-        </ul>
-      )}
-      {fetchedFilmo.cast?.length > 0 && (
-        <ul>
-          <h3>Dans l'équipe :</h3>
-          {fetchedFilmo.crew?.map((obj) => (
-            <li>
-              {obj.name || obj.original_title} {obj.job !== "" && <span>- Job : {obj.job}</span>}
-            </li>
-          ))}
-        </ul>
-      )}
+      <h2>Filmographie</h2>
+      {fetchedFilmo.cast?.length > 0 && <Filmo datas={fetchedFilmo.cast} type="character" />}{" "}
+      {fetchedFilmo.crew?.length > 0 && <Filmo datas={fetchedFilmo.crew} type="job" />}{" "}
     </div>
   );
 }

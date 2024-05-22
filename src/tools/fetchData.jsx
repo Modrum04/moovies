@@ -20,7 +20,7 @@ const queryList = {
       page: 1,
       "vote_average.lte": 10,
       "vote_count.gte": 20,
-      sort_by: "popularity.asc",
+      sort_by: "popularity.dsc",
     },
   },
   filter: {
@@ -39,6 +39,13 @@ const queryList = {
       "vote_average.lte": 10,
       "vote_count.gte": 20,
       sort_by: "popularity.asc",
+    },
+  },
+  details: {
+    endPoint: "movie/",
+    defaultQueryOptions: {
+      append_to_response: "credits",
+      language: "fr-FR",
     },
   },
   person: {
@@ -69,7 +76,7 @@ export function fetchData(selectedEndpoint, queryOptions = {}, source) {
     return (
       queryList[selectedEndpoint].endPoint +
       Object.entries(finalQueryOptions)
-        .map(([key, value]) => (value !== "?" ? `${key}=${value}` : key + "?"))
+        .map(([key, value]) => (value !== "?" ? `${key}=${value}` : key + value))
         .join("&")
     );
   };
@@ -112,7 +119,7 @@ export function useInfiniteScroll(fetchedData, useSource, currentPage, setCurren
   useEffect(() => {
     if (fetchedData.total_pages < 2) return;
 
-    const options = {
+    const optionsForIntersectionObserver = {
       root: null,
       rootMargin: "0px",
       threshold: 0,
@@ -129,7 +136,7 @@ export function useInfiniteScroll(fetchedData, useSource, currentPage, setCurren
       }
     };
 
-    observer.current = new IntersectionObserver(handleIntersection, options);
+    observer.current = new IntersectionObserver(handleIntersection, optionsForIntersectionObserver);
     observer.current.observe(document.querySelector(".observer"));
 
     return () => {

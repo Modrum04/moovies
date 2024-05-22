@@ -32,7 +32,7 @@ function Results({ data, fetchedData, isLoading }) {
             </div>
           </div>
         ))}
-      <div className="observer" style={{ minHeight: "10dvh", backgroundColor: "blue" }}>
+      <div className="observer" style={{ minHeight: "10dvh" }}>
         {isLoading && <h1>En chargement...</h1>}
       </div>
     </>
