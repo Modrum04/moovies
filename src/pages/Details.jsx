@@ -166,9 +166,11 @@ function Details() {
             ),
           )}
         </div>
-        <button type="button" onClick={() => setMoreCasting(!moreCasting)}>
-          {moreCasting ? "Voir moins" : "Voir plus"}
-        </button>
+        {fetchedData.credits?.cast?.length > 4 && (
+          <button type="button" onClick={() => setMoreCasting(!moreCasting)}>
+            {moreCasting ? "Voir moins" : "Voir plus"}
+          </button>
+        )}
       </div>
       <div className="crew-casting-container">
         <h3>Equipe</h3>
@@ -181,9 +183,11 @@ function Details() {
             ),
           )}
         </div>{" "}
-        <button type="button" onClick={() => setMoreCrew(!moreCrew)}>
-          {moreCrew ? "Voir moins" : "Voir plus"}
-        </button>
+        {fetchedData.credits?.crew?.length > 4 && (
+          <button type="button" onClick={() => setMoreCrew(!moreCrew)}>
+            {moreCrew ? "Voir moins" : "Voir plus"}
+          </button>
+        )}
       </div>
     </div>
   );
