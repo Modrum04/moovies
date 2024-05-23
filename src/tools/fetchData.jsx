@@ -18,8 +18,8 @@ const queryList = {
       include_video: true,
       language: "fr-FR",
       page: 1,
-      "vote_average.lte": 10,
-      "vote_count.gte": 20,
+      // "vote_average.lte": 10,
+      // "vote_count.gte": 20,
       sort_by: "popularity.dsc",
     },
   },
@@ -51,13 +51,7 @@ const queryList = {
   person: {
     endPoint: "person/",
     defaultQueryOptions: {
-      language: "fr-FR",
-    },
-  },
-  filmo: {
-    endPoint: "person/",
-    defaultQueryOptions: {
-      "/combined_credits": "?",
+      append_to_response: "combined_credits",
       language: "fr-FR",
     },
   },

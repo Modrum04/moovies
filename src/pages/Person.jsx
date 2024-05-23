@@ -10,6 +10,15 @@ function Person() {
   const { personid } = useParams();
   const [showMore, setShowMore] = useState(false);
 
+  const { fetchedData, isLoading } = fetchData("person", {
+    [personid]: "?",
+  });
+
+  const { fetchedData: fetchedMostPopular } = fetchData("discover", {
+    sort_by: "popularity.dsc",
+    with_people: personid,
+  });
+
   const getAge = (deathday, birthday) => {
     const endDay = deathday ? new Date(deathday) : new Date();
     const startingDay = new Date(birthday);
@@ -21,16 +30,15 @@ function Person() {
     return age;
   };
 
-  const { fetchedData, isLoading } = fetchData("person", {
-    [personid]: "?",
-  });
-  const { fetchedData: fetchedFilmo, isLoading: isLoadingFilmo } = fetchData("filmo", {
-    [personid]: "",
-  });
+  const getNoticeable = (arrayCastOrCrew) => {
+    const threeBestMovies = fetchedMostPopular.results?.filter((obj, i) => i < 3);
+    return fetchedData.combined_credits?.[arrayCastOrCrew].filter((movie) =>
+      threeBestMovies?.find((obj) => obj.id === movie.id),
+    );
+  };
 
   return (
     <div>
-      {console.log(fetchedFilmo)}
       <h1>{fetchedData.name}</h1>
       {fetchedData.also_known_as && fetchedData.also_known_as.length > 0 && (
         <>
@@ -79,9 +87,33 @@ function Person() {
           ? `Principalement ${fetchedData.gender === 1 ? "connue" : "connu"} en tant que ${fetchedData.known_for_department}`
           : "Biographie non renseignée"}
       </div>
+      {getNoticeable("cast")?.length > 0 && (
+        <div>
+          Film notable CAST :{" "}
+          {getNoticeable("cast")?.map((obj) => (
+            <div>
+              {obj.title} {obj.character}
+            </div>
+          ))}{" "}
+        </div>
+      )}
+      {getNoticeable("crew")?.length > 0 && (
+        <div>
+          Film notable CREW :{" "}
+          {getNoticeable("crew")?.map((obj) => (
+            <div>
+              {obj.title} {obj.job}
+            </div>
+          ))}{" "}
+        </div>
+      )}
       <h2>Filmographie</h2>
-      {fetchedFilmo.cast?.length > 0 && <Filmo datas={fetchedFilmo.cast} type="character" />}{" "}
-      {fetchedFilmo.crew?.length > 0 && <Filmo datas={fetchedFilmo.crew} type="job" />}{" "}
+      {fetchedData.combined_credits?.cast?.length > 0 && (
+        <Filmo datas={fetchedData.combined_credits.cast} type="character" />
+      )}{" "}
+      {fetchedData.combined_credits?.crew?.length > 0 && (
+        <Filmo datas={fetchedData.combined_credits.crew} type="job" />
+      )}{" "}
     </div>
   );
 }
