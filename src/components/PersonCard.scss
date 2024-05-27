@@ -19,7 +19,7 @@ $spacingDouble: $spacing * 2;
   }
 }
 
-.person-container {
+.person-card-container {
   @include flexDisplay(row-reverse, center, flex-end);
   padding: $spacing;
   border-radius: 10px;

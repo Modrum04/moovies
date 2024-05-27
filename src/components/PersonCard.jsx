@@ -6,14 +6,12 @@ import PersonProfilImage from "./PersonProfilImage";
 import PersonNoProfilImage from "./PersonNoProfilImage";
 
 function PersonCard({ person }) {
-  const blabl = 488;
-  // 4165
   const { theme } = useContext(ThemeContext);
   const { character, name, job, profile_path, id } = person;
   const noInformations = "Information non disponible";
 
   return (
-    <Link className={`themed-fiche ${theme} person-container`} to={`/person/${id}`}>
+    <Link className={`themed-fiche ${theme} person-card-container`} to={`/person/${id}`}>
       <div className="person-description">
         <p>
           {job ? `Job : ` : `Role : `}

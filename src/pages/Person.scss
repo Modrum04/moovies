@@ -1,0 +1,53 @@
+$fontSize1: 1.5rem;
+$fontSize2: 1.25rem;
+$fontSize3: 1.1rem;
+$fontSize4: 0.8rem;
+$spacing: 8px;
+$spacingDouble: $spacing * 2;
+
+@mixin flexDisplay($direction: column, $align: center, $justify: center) {
+  display: flex;
+  flex-direction: $direction;
+  align-items: $align;
+  justify-content: $justify;
+  gap: $spacing;
+}
+
+@mixin mq($breakpoint: 768px) {
+  @media screen and (min-width: $breakpoint) {
+    @content;
+  }
+}
+
+.person-container {
+  @include flexDisplay();
+  padding: $spacingDouble;
+  h1 {
+    padding-block: $spacing;
+    text-align: center;
+  }
+  h2 {
+    padding-block: $spacing;
+    @include mq() {
+      padding-block: $spacingDouble;
+    }
+  }
+  .person-description-container {
+    @include flexDisplay();
+    @include mq() {
+      @include flexDisplay(row, flex-start, center);
+    }
+    .person-description {
+      .biography {
+        text-wrap: wrap;
+        max-width: 500px;
+      }
+    }
+    .person-img-container {
+      img {
+        border-radius: 20px;
+        max-width: 250px;
+      }
+    }
+  }
+}

@@ -9,7 +9,7 @@ function Details() {
   const [moreCrew, setMoreCrew] = useState(false);
   const [moreCasting, setMoreCasting] = useState(false);
   const noInformations = "Information non disponible";
-  const { fetchedData, isLoading } = fetchData("details", {
+  const { fetchedData } = fetchData("details", {
     [filmid]: "?",
   });
 
