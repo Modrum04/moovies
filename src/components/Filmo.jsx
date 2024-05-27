@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 function Filmo({ datas, type }) {
   return (
     <ul>
@@ -14,7 +16,8 @@ function Filmo({ datas, type }) {
             {obj.release_date?.split("-")[0] ||
               obj.first_air_date?.split("-")[0] ||
               "Date non renseignée"}{" "}
-            - {obj.name || obj.title} - <em>{obj.media_type}</em>{" "}
+            - <Link to={`/details/${obj.id}`}>{obj.name || obj.title} </Link> -{" "}
+            <em>{obj.media_type}</em>{" "}
             {(obj.job !== "" || obj.character !== "") && (
               <span>
                 {" "}

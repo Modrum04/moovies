@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { fetchData } from "../tools/fetchData";
 import { useState } from "react";
 import PersonNoProfilImage from "../components/PersonNoProfilImage";
@@ -43,18 +43,41 @@ function Person() {
       <h1>{fetchedData.name}</h1>
       <div className="person-description-container">
         <div className="person-description">
-          {fetchedData.also_known_as && fetchedData.also_known_as.length > 0 && (
-            <ul>
-              {" "}
-              Egalment {fetchedData.gender === 1 ? "connue" : "connu"} sous le nom de :
-              {fetchedData.also_known_as?.map((alias) => (
-                <li>{alias}</li>
-              ))}
-            </ul>
-          )}
+          <p className="name-alias">
+            <span>Nom : </span> {fetchedData.name}{" "}
+            {fetchedData.also_known_as && fetchedData.also_known_as.length > 0 && (
+              <>
+                <br />
+                Egalment {fetchedData.gender === 1 ? "connue" : "connu"} sous le nom de :{" "}
+                {!showMore
+                  ? fetchedData.also_known_as?.map(
+                      (alias, i, arr) =>
+                        i < 2 && (
+                          <em>
+                            {alias}
+                            {i < arr.length - 1 && ", "}
+                          </em>
+                        ),
+                    )
+                  : fetchedData.also_known_as?.map((alias, i, arr) => (
+                      <em>
+                        {alias}
+                        {i < arr.length - 1 && ", "}
+                      </em>
+                    ))}
+                {fetchedData.also_known_as?.length > 2 && (
+                  <button onClick={() => setShowMore(!showMore)}> . . . </button>
+                )}
+              </>
+            )}{" "}
+          </p>
+
           {fetchedData.birthday ? (
             <>
-              <div>Date de naissance : {fetchedData.birthday?.split("-").reverse().join("-")}</div>
+              <div>
+                <span>Date de naissance : </span>
+                {fetchedData.birthday?.split("-").reverse().join("-")}
+              </div>
               <div>
                 {fetchedData.deathday ? (
                   <>Date de décès : {fetchedData.deathday?.split("-").reverse().join("-")} </>
@@ -76,32 +99,49 @@ function Person() {
             <div>"Lieu de naissance inconnu" </div>
           )}
           <p className="biography">
-            {fetchedData.biography !== "" ? fetchedData.biography : "Biographie non renseignée"}
+            {fetchedData.biography !== "" ? (
+              <>
+                <span>Biographie : </span>
+                {fetchedData.biography}
+              </>
+            ) : (
+              "Biographie non renseignée"
+            )}
           </p>
           <div>
-            {fetchedData.known_for_departement !== ""
-              ? `Principalement ${fetchedData.gender === 1 ? "connue" : "connu"} en tant que ${fetchedData.known_for_department}`
-              : "Biographie non renseignée"}
+            {fetchedData.known_for_departement !== "" &&
+              `Principalement ${fetchedData.gender === 1 ? "connue" : "connu"} en tant que ${fetchedData.known_for_department}`}
           </div>
           {getNoticeable("cast")?.length > 0 && (
-            <div>
-              Film notable (<em>dans un casting</em>) :{" "}
+            <ul>
+              <span>
+                {" "}
+                Film notable (<em>dans un casting</em>){" "}
+              </span>
+              :{" "}
               {getNoticeable("cast")?.map((obj) => (
-                <div>
-                  {obj.title} {obj.character}
-                </div>
+                <li>
+                  <Link to={`/details/${obj.id}`}>
+                    {obj.title} - Rôle : {obj.character}
+                  </Link>
+                </li>
               ))}{" "}
-            </div>
+            </ul>
           )}
           {getNoticeable("crew")?.length > 0 && (
-            <div>
-              Film notable (<em>dans une équipe de tournage</em>) :{" "}
+            <ul>
+              <span>
+                Film notable (<em>dans une équipe de tournage</em>){" "}
+              </span>
+              :{" "}
               {getNoticeable("crew")?.map((obj) => (
-                <div>
-                  {obj.title} {obj.job}
-                </div>
+                <li>
+                  <Link to={`/details/${obj.id}`}>
+                    {obj.title} - Job : {obj.job}
+                  </Link>
+                </li>
               ))}{" "}
-            </div>
+            </ul>
           )}
         </div>
         {fetchedData.profile_path ? (

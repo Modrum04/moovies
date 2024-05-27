@@ -20,6 +20,7 @@ $spacingDouble: $spacing * 2;
 }
 
 .person-container {
+  min-height: 80dvh;
   @include flexDisplay();
   padding: $spacingDouble;
   h1 {
@@ -32,21 +33,41 @@ $spacingDouble: $spacing * 2;
       padding-block: $spacingDouble;
     }
   }
+
   .person-description-container {
-    @include flexDisplay();
+    @include flexDisplay(column-reverse);
     @include mq() {
-      @include flexDisplay(row, flex-start, center);
+      @include flexDisplay(row, flex-start, space-evenly);
+      width: 100%;
+    }
+    em {
+      font-weight: 300;
+    }
+
+    font-weight: 300;
+    span {
+      font-weight: 400;
     }
     .person-description {
+      @include flexDisplay(column, "unset", "center");
       .biography {
         text-wrap: wrap;
-        max-width: 500px;
+        max-width: 700px;
+        line-height: 1.5;
+      }
+      .name-alias {
+        max-width: 700px;
+        text-wrap: wrap;
+        button {
+          padding: 0;
+          background-color: transparent;
+        }
       }
     }
     .person-img-container {
       img {
         border-radius: 20px;
-        max-width: 250px;
+        max-width: 300px;
       }
     }
   }
