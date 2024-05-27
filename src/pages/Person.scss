@@ -20,7 +20,10 @@ $spacingDouble: $spacing * 2;
 }
 
 .person-container {
-  min-height: 80dvh;
+  min-height: 85dvh;
+  @include mq() {
+    min-height: 80dvh;
+  }
   @include flexDisplay();
   padding: $spacingDouble;
   h1 {
@@ -43,7 +46,6 @@ $spacingDouble: $spacing * 2;
     em {
       font-weight: 300;
     }
-
     font-weight: 300;
     span {
       font-weight: 400;
