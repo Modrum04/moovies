@@ -63,10 +63,14 @@ $spacingDouble: $spacing * 2;
       }
     }
     .info {
-      @include flexDisplay(column, center, space-between);
+      @include flexDisplay(column, center, center);
+      @include mq() {
+        @include flexDisplay(column, center, space-between);
+        min-height: 345px;
+      }
       gap: $spacingDouble;
       width: 100%;
-      min-height: 345px;
+
       h3 {
         padding: 0;
         text-wrap: wrap;

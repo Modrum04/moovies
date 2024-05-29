@@ -11,19 +11,28 @@ function Filmo({ datas, type }) {
             (b.release_date?.split("-")[0] || b.first_air_date?.split("-")[0])
           );
         })
+        .filter(
+          (el) =>
+            !el.genre_ids.includes(10764) &&
+            !el.genre_ids.includes(10763) &&
+            el.genre_ids.length > 0 &&
+            el.character !== "Self",
+        )
         .map((obj) => (
           <li>
-            {obj.release_date?.split("-")[0] ||
-              obj.first_air_date?.split("-")[0] ||
-              "Date non renseignée"}{" "}
-            - <Link to={`/details/${obj.id}`}>{obj.name || obj.title} </Link> -{" "}
-            <em>{obj.media_type}</em>{" "}
-            {(obj.job !== "" || obj.character !== "") && (
-              <span>
-                {" "}
-                - {type === "job" ? "Job" : "Role"} : {obj.job || obj.character}
-              </span>
-            )}
+            <Link to={`/details/${obj.id}`}>
+              {" "}
+              {obj.release_date?.split("-")[0] ||
+                obj.first_air_date?.split("-")[0] ||
+                "Date non renseignée"}{" "}
+              - <span>{obj.name || obj.title} </span> - <em>{obj.media_type}</em>{" "}
+              {(obj.job !== "" || obj.character !== "") && (
+                <>
+                  {" "}
+                  - {type === "job" ? "Job" : "Role"} : {obj.job || obj.character}
+                </>
+              )}
+            </Link>
           </li>
         ))}
     </ul>
