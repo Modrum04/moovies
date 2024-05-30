@@ -20,6 +20,7 @@ $spacingDouble: $spacing * 2;
 }
 
 .person-container {
+  line-height: 1.2;
   font-size: $fontSize4;
   min-height: 85dvh;
   @include mq() {
@@ -81,13 +82,23 @@ $spacingDouble: $spacing * 2;
     }
   }
   .filmography {
-    text-align: center;
-    line-height: 1.5;
-    li {
-      font-weight: 300;
-      &:hover {
-        transition: scale 500ms ease-out;
-        scale: 1.1;
+    @include flexDisplay(column, center, center);
+    line-height: 1.2;
+    @include mq() {
+      text-align: center;
+    }
+    ul {
+      @include flexDisplay(column, flex-start, center);
+      gap: $spacing;
+      @include mq() {
+        @include flexDisplay(column, center, center);
+      }
+      li {
+        font-weight: 300;
+        &:hover {
+          transition: scale 500ms ease-out;
+          scale: 1.1;
+        }
       }
     }
   }

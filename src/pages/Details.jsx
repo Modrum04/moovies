@@ -99,7 +99,8 @@ function Details() {
             <li>
               <div>Réalisation : </div>{" "}
               <div>
-                {fetchedData.credits?.crew?.find((obj) => obj.job === "Director").original_name}{" "}
+                {fetchedData.credits?.crew?.find((obj) => obj.job === "Director")?.original_name ||
+                  noInformations}{" "}
               </div>
             </li>
 
