@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { fetchData } from "../tools/fetchData";
 import PersonCard from "../components/PersonCard";
 import "./Details.scss";
@@ -12,6 +12,7 @@ function Details() {
   const { fetchedData } = fetchData("details", {
     [filmid]: "?",
   });
+  useEffect(() => window.scroll(0, 0), []);
 
   const scalingRate = () => {
     let comment = "";

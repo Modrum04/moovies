@@ -4,8 +4,13 @@ import { fetchData, useInfiniteScroll } from "../tools/fetchData";
 import Card from "../components/Card";
 import "./SearchPage.scss";
 import Results from "../components/Results";
+import Sort from "../components/Sort";
 
 function SearchPage() {
+  ////////////////
+  const [sortBy, setSortBy] = useState("popularity.dsc");
+
+  /////////////
   const [searchText, setSearchText] = useState("");
   const [currentPage, setCurrentPage] = useState(0);
   const { fetchedData } = fetchData(
@@ -13,6 +18,7 @@ function SearchPage() {
     {
       query: searchText,
       page: currentPage,
+      sort_by: sortBy,
     },
     searchText,
   );
@@ -28,6 +34,7 @@ function SearchPage() {
     <div className="container-searchPage">
       <div className="container-search-menu">
         <SearchBar setSearch={setSearchText} search={searchText} setPage={setCurrentPage} />
+        {/* <Sort setSort={setSortBy} /> */}
       </div>
       {data?.length !== 0 && searchText !== "" && (
         <div className="container-handleChange" key={`${fetchedData?.total_results}`}>
