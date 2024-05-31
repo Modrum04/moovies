@@ -1,9 +1,31 @@
+$fontSize1: 1.5rem;
+$fontSize2: 1.25rem;
+$fontSize3: 1.1rem;
+$fontSize4: 0.8rem;
+$spacing: 8px;
+$spacingDouble: $spacing * 2;
+
+@mixin mq($breakpoint: 768px) {
+  @media screen and (min-width: $breakpoint) {
+    @content;
+  }
+}
+
+@mixin flexDisplay($direction: column, $align: center, $justify: center) {
+  display: flex;
+  flex-direction: $direction;
+  align-items: $align;
+  justify-content: $justify;
+  gap: $spacing;
+}
+
 .dropdown-menu {
   width: fit-content;
   height: fit-content;
   background-color: #1d2a38;
   display: flex;
-  padding: 8px;
+  padding-block: 6px;
+  padding-inline: 8px;
   gap: 6px;
   border-radius: 12px;
 
@@ -21,8 +43,17 @@
   }
 
   i {
+    font-size: $fontSize4;
     display: grid;
     place-content: center;
-    font-size: 20px;
+    @include mq() {
+      font-size: $fontSize3;
+    }
+  }
+  select {
+    font-size: $fontSize4;
+    @include mq() {
+      font-size: $fontSize3;
+    }
   }
 }

@@ -18,28 +18,3 @@ $spacingDouble: $spacing * 2;
     @content;
   }
 }
-
-.global-filter {
-  display: flex;
-  justify-content: center;
-  padding: $spacing;
-  border-radius: 12px;
-  gap: $spacingDouble * 2;
-  align-items: center;
-  button {
-    padding-block: $spacing;
-  }
-}
-
-.filter-card-container {
-  gap: $spacingDouble;
-  padding: $spacing;
-  max-width: 100%;
-  display: grid;
-  min-height: 85dvh;
-  @include mq() {
-    grid-template-columns: 1fr 1fr;
-    gap: $spacingDouble;
-    padding: $spacingDouble * 2;
-  }
-}

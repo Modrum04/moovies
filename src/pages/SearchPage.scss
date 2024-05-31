@@ -29,12 +29,12 @@ $spacingDouble: $spacing * 2;
     width: 100dvw;
     position: sticky;
     top: 0;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
+    @include flexDisplay(column, center, center);
     gap: $spacingDouble;
     padding: $spacingDouble;
+    @include mq() {
+      @include flexDisplay(row, center, center);
+    }
   }
   .fi-ts-popcorn {
     position: absolute;
