@@ -31,7 +31,7 @@ $shadowBox: 4px 4px 15px rgb(255, 0, 110);
       filter: drop-shadow(0 0 20px $backgroundColor);
     }
     .selector-search-system-container {
-      button {
+      a {
         background-color: $backgroundColor;
         color: lighten($textColor, 50%);
         &:hover {
@@ -39,14 +39,15 @@ $shadowBox: 4px 4px 15px rgb(255, 0, 110);
           background-color: $backgroundCardColor;
           color: lighten(#ffbe0b, 50%);
         }
-      }
-      .active-tab {
-        background: linear-gradient(to left, $backgroundColor, $backgroundCardColor);
-        color: lighten($textColor, 70%);
-        cursor: unset;
-        &:hover {
-          background-color: $backgroundCardColor;
+
+        &.active {
+          background: linear-gradient(to left, $backgroundColor, $backgroundCardColor);
           color: lighten($textColor, 70%);
+          cursor: unset;
+          &:hover {
+            background-color: $backgroundCardColor;
+            color: lighten($textColor, 70%);
+          }
         }
       }
     }

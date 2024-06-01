@@ -1,7 +1,5 @@
 import "./FilterByGenre.scss";
-import { useContext, useState, useEffect } from "react";
-import PropTypes from "prop-types";
-import { GenreContext } from "../contexts/GenreContext";
+import { useState, useEffect } from "react";
 import { sortTypes } from "../lib/sortTypes";
 
 function Sort({ setSort }) {

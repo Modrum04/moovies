@@ -41,7 +41,6 @@ function Person() {
   return (
     <div className="person-container">
       <h1>{fetchedData.name}</h1>
-      {console.log(fetchedData)}
       <div className="person-description-container">
         <div className="person-description">
           <p className="name-alias">
