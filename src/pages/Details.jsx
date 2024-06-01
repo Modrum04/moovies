@@ -162,9 +162,9 @@ function Details() {
         <div className="crew-casting">
           {fetchedData.credits?.cast?.map((acteur, i) =>
             moreCasting ? (
-              <PersonCard person={acteur} key={acteur.credit_id} />
+              <PersonCard person={acteur} key={acteur.credit_id} type="movie" />
             ) : (
-              i < 4 && <PersonCard person={acteur} key={acteur.credit_id} />
+              i < 4 && <PersonCard person={acteur} key={acteur.credit_id} type="movie" />
             ),
           )}
         </div>
@@ -179,9 +179,9 @@ function Details() {
         <div className="crew-casting">
           {fetchedData.credits?.crew.map((crew, i) =>
             moreCrew ? (
-              <PersonCard person={crew} key={crew.credit_id} />
+              <PersonCard person={crew} key={crew.credit_id} type="movie" />
             ) : (
-              i < 4 && <PersonCard person={crew} key={crew.credit_id} />
+              i < 4 && <PersonCard person={crew} key={crew.credit_id} type="movie" />
             ),
           )}
         </div>{" "}

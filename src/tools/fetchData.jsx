@@ -1,4 +1,5 @@
 import { useEffect, useState, useRef } from "react";
+import SearchMoovie from "../components/SearchMovie";
 
 const token = import.meta.env.VITE_MY_API_TOKEN;
 
@@ -18,8 +19,6 @@ const queryList = {
       include_video: true,
       language: "fr-FR",
       page: 1,
-      // "vote_average.lte": 10,
-      // "vote_count.gte": 20,
       sort_by: "popularity.dsc",
     },
   },
@@ -29,7 +28,7 @@ const queryList = {
       language: "fr-FR",
     },
   },
-  search: {
+  searchMoovie: {
     endPoint: "search/movie?",
     defaultQueryOptions: {
       query: "",
@@ -39,6 +38,15 @@ const queryList = {
       "vote_average.lte": 10,
       "vote_count.gte": 20,
       sort_by: "popularity.asc",
+    },
+  },
+  searchPerson: {
+    endPoint: "search/person?",
+    defaultQueryOptions: {
+      query: "",
+      include_adult: false,
+      language: "fr-FR",
+      page: 1,
     },
   },
   details: {

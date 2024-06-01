@@ -1,1 +1,37 @@
+$fontSize1: 1.5rem;
+$fontSize2: 1.25rem;
+$fontSize3: 1.1rem;
+$fontSize4: 0.8rem;
+$spacing: 8px;
+$spacingDouble: $spacing * 2;
 
+@mixin flexDisplay($direction: column, $align: center, $justify: center) {
+  display: flex;
+  flex-direction: $direction;
+  align-items: $align;
+  justify-content: $justify;
+  gap: $spacing;
+}
+
+@mixin mq($breakpoint: 768px) {
+  @media screen and (min-width: $breakpoint) {
+    @content;
+  }
+}
+
+.search-bar {
+  padding: $spacing;
+  border-radius: 0%;
+  @include mq() {
+    width: 256px;
+    padding-inline: $spacingDouble;
+    padding-block: calc($spacingDouble * 1);
+  }
+  &::placeholder {
+    font-size: 0.6rem;
+    font-style: italic;
+    @include mq() {
+      font-size: $fontSize4;
+    }
+  }
+}

@@ -30,7 +30,7 @@ function Filter() {
           <p>Nombre de résultats obtenus : {fetchedData?.total_results}</p>
         </div>
       )}
-      <Results data={data} fetchedData={fetchedData} isLoading={isLoading} />
+      <Results data={data} fetchedData={fetchedData} isLoading={isLoading} type="movie" />
     </div>
   );
 }

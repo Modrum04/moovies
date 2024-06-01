@@ -45,7 +45,7 @@ function SearchBar({ setSearch, search, setPage }) {
         type="text"
         value={inputText}
         onChange={handleInputChange}
-        placeholder="Rechercher un film"
+        placeholder="Rechercher un film ou une personne"
       />
     </>
   );

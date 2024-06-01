@@ -11,6 +11,8 @@ import { ThemeContextProvider } from "./contexts/ThemeContext";
 import { GenreContextProvider } from "./contexts/GenreContext";
 import HeaderLayout from "./layouts/HeaderLayout";
 import Person from "./pages/Person";
+import SearchMovie from "./components/SearchMovie";
+import SearchPerson from "./components/SearchPerson";
 
 const router = createBrowserRouter([
   {
@@ -36,6 +38,16 @@ const router = createBrowserRouter([
           {
             path: "search",
             element: <SearchPage />,
+            children: [
+              {
+                path: "search-movie",
+                element: <SearchMovie />,
+              },
+              {
+                path: "search-person",
+                element: <SearchPerson />,
+              },
+            ],
           },
           {
             path: "filter",
