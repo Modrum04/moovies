@@ -41,15 +41,16 @@ header {
   a {
     text-decoration: none;
     overflow: hidden;
+    position: relative;
+    z-index: 1;
+    @include mq() {
+      left: 56px;
+    }
   }
   .logo {
-    max-width: 64px;
     font-size: 2rem;
     @include mq() {
-      max-width: 128px;
-      position: relative;
-      z-index: 1;
-      font-size: 8rem;
+      font-size: 6rem;
     }
   }
 }
