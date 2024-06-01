@@ -25,8 +25,15 @@ $spacingDouble: $spacing * 2;
   .selector-search-system-container {
     @include flexDisplay(row);
     gap: 0;
-    button {
+    a {
+      font-size: $fontSize4;
+      padding: $spacing;
       border-radius: 0%;
+      @include mq() {
+        font-size: $fontSize3;
+        padding-inline: $spacingDouble;
+        padding-block: calc($spacingDouble * 1);
+      }
     }
   }
   .separator {

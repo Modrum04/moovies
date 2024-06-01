@@ -11,7 +11,7 @@ function Person() {
   const [showMore, setShowMore] = useState(false);
   const [showFilmo, setShowFilmo] = useState(false);
 
-  const { fetchedData, isLoading } = fetchData("person", {
+  const { fetchedData } = fetchData("person", {
     [personid]: "?",
   });
 
@@ -41,6 +41,7 @@ function Person() {
   return (
     <div className="person-container">
       <h1>{fetchedData.name}</h1>
+      {console.log(fetchedData)}
       <div className="person-description-container">
         <div className="person-description">
           <p className="name-alias">
@@ -53,14 +54,14 @@ function Person() {
                   ? fetchedData.also_known_as?.map(
                       (alias, i, arr) =>
                         i < 2 && (
-                          <em>
+                          <em key={`${fetchedData.id}-aka-${i}`}>
                             {alias}
                             {i < arr.length - 1 && ", "}
                           </em>
                         ),
                     )
                   : fetchedData.also_known_as?.map((alias, i, arr) => (
-                      <em>
+                      <em key={`${fetchedData.id}-aka-${i}`}>
                         {alias}
                         {i < arr.length - 1 && ", "}
                       </em>
@@ -120,7 +121,7 @@ function Person() {
               </span>
               :{" "}
               {getNoticeable("cast")?.map((obj) => (
-                <li>
+                <li key={`${obj.id}`}>
                   <Link to={`/details/${obj.id}`}>
                     {obj.title} - Rôle : {obj.character}
                   </Link>
@@ -135,7 +136,7 @@ function Person() {
               </span>
               :{" "}
               {getNoticeable("crew")?.map((obj) => (
-                <li>
+                <li key={`${obj.id}`}>
                   <Link to={`/details/${obj.id}`}>
                     {obj.title} - Job : {obj.job}
                   </Link>

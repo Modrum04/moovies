@@ -3,6 +3,7 @@ import "./SearchPage.scss";
 import "./SearchArea.scss";
 import Filter from "./Filter";
 import SearchPage from "./SearchPage";
+import { Link, NavLink, Outlet } from "react-router-dom";
 
 function SearchArea() {
   const [isDiscover, setIsDiscover] = useState(false);
@@ -10,18 +11,27 @@ function SearchArea() {
   return (
     <div className="container-search-area">
       <div className="selector-search-system-container">
-        <button
-          className={`${!isDiscover ? "active-tab" : ""}`}
-          onClick={() => setIsDiscover(false)}
-        >
+        <NavLink to="search">
+          {/* <button
+            className={`${!isDiscover ? "active-tab" : ""}`}
+            onClick={() => setIsDiscover(false)}
+          > */}
           Rechercher
-        </button>
-        <button className={`${isDiscover ? "active-tab" : ""}`} onClick={() => setIsDiscover(true)}>
+          {/* </button> */}
+        </NavLink>
+        <NavLink to="filter">
+          {" "}
+          {/* <button
+            className={`${isDiscover ? "active-tab" : ""}`}
+            onClick={() => setIsDiscover(true)}
+          > */}
           Découvrir
-        </button>
+          {/* </button> */}
+        </NavLink>
       </div>
       <div className="separator"></div>
-      {isDiscover ? <Filter /> : <SearchPage />}
+      <Outlet />
+      {/* {isDiscover ? <Filter /> : <SearchPage />} */}
     </div>
   );
 }

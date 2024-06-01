@@ -29,7 +29,20 @@ const router = createBrowserRouter([
         path: "/person/:personid",
         element: <Person />,
       },
-      { path: "/search-area", element: <SearchArea /> },
+      {
+        path: "/search-area",
+        element: <SearchArea />,
+        children: [
+          {
+            path: "search",
+            element: <SearchPage />,
+          },
+          {
+            path: "filter",
+            element: <Filter />,
+          },
+        ],
+      },
     ],
   },
 ]);

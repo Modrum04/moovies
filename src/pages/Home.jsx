@@ -50,7 +50,7 @@ function Home() {
       </div>
 
       <div className="direction">
-        <Link to="/search-area">
+        <Link to="/search-area/search">
           <button type="button">Entrer</button>
         </Link>
       </div>

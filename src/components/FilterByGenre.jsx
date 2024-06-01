@@ -1,12 +1,11 @@
 import "./FilterByGenre.scss";
 import { useContext, useState, useEffect } from "react";
-import PropTypes from "prop-types";
 import { GenreContext } from "../contexts/GenreContext";
 
 function FilterByGenre({ setGenre, setPage }) {
   const { fetchedGenre } = useContext(GenreContext);
   const [changeTimeout, setChangeTimeout] = useState(null);
-  const [selected, setSelected] = useState([]);
+  const [selected, setSelected] = useState("");
 
   useEffect(() => {
     const lastSelected = JSON.parse(sessionStorage.getItem("SELECT_GENRE_KEY") ?? "[]");
@@ -48,7 +47,3 @@ function FilterByGenre({ setGenre, setPage }) {
   );
 }
 export default FilterByGenre;
-
-// FilterByGenre.propTypes = {
-//   setGenre: PropTypes.func.isRequired,
-// };

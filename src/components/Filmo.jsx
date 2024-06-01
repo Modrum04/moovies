@@ -11,15 +11,16 @@ function Filmo({ datas, type }) {
             (b.release_date?.split("-")[0] || b.first_air_date?.split("-")[0])
           );
         })
-        .filter(
-          (el) =>
-            !el.genre_ids.includes(10764) &&
-            !el.genre_ids.includes(10763) &&
-            el.genre_ids.length > 0 &&
-            el.character !== "Self",
+        .filter((el) =>
+          el.genre_ids
+            ? !el.genre_ids?.includes(10764) &&
+              !el.genre_ids?.includes(10763) &&
+              el.genre_ids.length > 0 &&
+              el.character !== "Self"
+            : el,
         )
-        .map((obj) => (
-          <li>
+        .map((obj, i) => (
+          <li key={`${obj.id}-${obj.media_type}-${i}`}>
             <Link to={`/details/${obj.id}`}>
               {" "}
               {obj.release_date?.split("-")[0] ||

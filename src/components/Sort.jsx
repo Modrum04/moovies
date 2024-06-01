@@ -6,7 +6,7 @@ import { sortTypes } from "../lib/sortTypes";
 
 function Sort({ setSort }) {
   const [changeTimeout, setChangeTimeout] = useState(null);
-  const [selected, setSelected] = useState([]);
+  const [selected, setSelected] = useState("");
 
   useEffect(() => {
     const lastSelected = JSON.parse(sessionStorage.getItem("SELECT_SORT_KEY") ?? "[]");
