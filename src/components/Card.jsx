@@ -34,40 +34,43 @@ function Card({
   const starsString = convertToStars(voteAverage);
 
   return (
-    <div className={`themed-fiche ${theme} card-container`}>
-      <div className="header-card-container">
-        <div className="title-container">
-          <h1 className="title">{originalTitle}</h1>
-          {originalTitle !== title ? <em>{title}</em> : <br />}
-        </div>
-        <div className="year-release"> {date?.split("-")[0]}</div>
-        <span>
-          {genresName?.map((genre, i, arr) => (i === arr.length - 1 ? genre : `${genre}, `))}
-        </span>
-      </div>
-      <div className="cover-art-desc">
-        {poster !== null && <img src={`https://image.tmdb.org/t/p/w500/${poster}`} alt="" />}
-        <div className="info">
-          <h3>Synopsis</h3>
-          <p className="description">
-            {overview
-              ?.split(" ")
-              .filter((el) => !el.includes("http"))
-              .join(" ") || <em>{noInformations}</em>}
-          </p>
-          <h3>Note des spectateurs</h3>
-          <p className="stars">{starsString}</p>
-          <div className="details-btn">
-            <Link to={`/details/${filmid}`}>
-              <button type="button" className={`themed-button-in-card ${theme}`}>
-                Détails
-              </button>
-            </Link>
+    <Link to={`/details/${filmid}`}>
+      {" "}
+      <div className={`themed-fiche ${theme} card-container`}>
+        <div className="header-card-container">
+          <div className="title-container">
+            <h1 className="title">{originalTitle}</h1>
+            {originalTitle !== title ? <em>{title}</em> : <br />}
           </div>
+          <div className="year-release"> {date?.split("-")[0]}</div>
+          <span>
+            {genresName?.map((genre, i, arr) => (i === arr.length - 1 ? genre : `${genre}, `))}
+          </span>
         </div>
-      </div>{" "}
-      <em>{resultNumber}</em>
-    </div>
+        <div className="cover-art-desc">
+          {poster !== null && <img src={`https://image.tmdb.org/t/p/w500/${poster}`} alt="" />}
+          <div className="info">
+            <h3>Synopsis</h3>
+            <p className="description">
+              {overview
+                ?.split(" ")
+                .filter((el) => !el.includes("http"))
+                .join(" ") || <em>{noInformations}</em>}
+            </p>
+            <h3>Note des spectateurs</h3>
+            <p className="stars">{starsString}</p>
+            <div className="details-btn">
+              <Link to={`/details/${filmid}`}>
+                <button type="button" className={`themed-button-in-card ${theme}`}>
+                  Détails
+                </button>
+              </Link>
+            </div>
+          </div>
+        </div>{" "}
+        <em>{resultNumber}</em>
+      </div>
+    </Link>
   );
 }
 
