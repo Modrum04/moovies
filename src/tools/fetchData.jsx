@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from "react";
-import SearchMoovie from "../components/SearchMovie";
+import SearchMoovie from "../pages/SearchMovie";
 
 const token = import.meta.env.VITE_MY_API_TOKEN;
 

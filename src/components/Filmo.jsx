@@ -13,7 +13,8 @@ function Filmo({ datas, type }) {
         })
         .filter((el) =>
           el.genre_ids
-            ? !el.genre_ids?.includes(10764) &&
+            ? el.media_type != "tv" &&
+              !el.genre_ids?.includes(10764) &&
               !el.genre_ids?.includes(10763) &&
               el.genre_ids.length > 0 &&
               el.character !== "Self"

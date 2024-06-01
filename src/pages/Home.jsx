@@ -40,17 +40,19 @@ function Home() {
     </>
   ) : (
     <div className="home-page-container">
+      {console.log(dataNanard)}
+      {console.log(nanard)}
       <div className="presentation">
         <h2>Bienvenue sur Moovies</h2>
         <h2>Votre cinémathèque</h2>
         <p className="description-site">
-          Découvrez Moovies, un moteur de recherche de films exploitant toute la richesse de The
-          Movie Data Base.
+          Découvrez Moovies, un moteur de recherche sur le cinéma exploitant toute la richesse de
+          The Movie Data Base.
         </p>
       </div>
 
       <div className="direction">
-        <Link to="/search-area/search/search-movie">
+        <Link to="/search-area/search">
           <button type="button">Entrer</button>
         </Link>
       </div>

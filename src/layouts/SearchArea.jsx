@@ -1,6 +1,7 @@
 import "./SearchPage.scss";
 import "./SearchArea.scss";
-import { NavLink, Outlet } from "react-router-dom";
+import { NavLink, useNavigate, Outlet } from "react-router-dom";
+import { useEffect } from "react";
 
 function SearchArea() {
   return (

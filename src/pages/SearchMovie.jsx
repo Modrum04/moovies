@@ -1,17 +1,11 @@
-import SearchBar from "./SearchBar";
-import { useState, useEffect, useRef } from "react";
 import { fetchData, useInfiniteScroll } from "../tools/fetchData";
-import Card from "./Card";
-import "../pages/SearchPage.scss";
-import Results from "./Results";
-import Sort from "./Sort";
+import Results from "../components/Results";
 import { useOutletContext } from "react-router-dom";
 
-function SearchPerson() {
+function SearchMovie() {
   const { searchText, currentPage, setCurrentPage } = useOutletContext();
-
   const { fetchedData } = fetchData(
-    "searchPerson",
+    "searchMoovie",
     {
       query: searchText,
       page: currentPage,
@@ -35,10 +29,10 @@ function SearchPerson() {
       )}
       {searchText === "" && <i className="fi fi-ts-popcorn" />}
       {searchText !== "" && fetchedData.results?.length === 0 && (
-        <p>Aucune personne ne correspond à votre recherche</p>
+        <p>Aucun film ne correspond à votre recherche</p>
       )}
-      <Results data={data} fetchedData={fetchedData} isLoading={isLoading} type="person" />
+      <Results data={data} fetchedData={fetchedData} isLoading={isLoading} type="movie" />
     </>
   );
 }
-export default SearchPerson;
+export default SearchMovie;

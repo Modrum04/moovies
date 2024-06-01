@@ -1,12 +1,14 @@
 import SearchBar from "../components/SearchBar";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./SearchPage.scss";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { Outlet } from "react-router-dom";
 
 function SearchPage() {
   const [searchText, setSearchText] = useState("");
   const [currentPage, setCurrentPage] = useState(0);
+  const navigateTo = useNavigate();
+  useEffect(() => navigateTo("search-movie"), []);
 
   return (
     <div className="container-searchPage">

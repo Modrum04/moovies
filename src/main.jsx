@@ -4,15 +4,15 @@ import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import App from "./App";
 import Details from "./pages/Details";
-import SearchPage from "./pages/SearchPage";
+import SearchPage from "./layouts/SearchPage";
 import Filter from "./pages/Filter";
-import SearchArea from "./pages/SearchArea";
+import SearchArea from "./layouts/SearchArea";
 import { ThemeContextProvider } from "./contexts/ThemeContext";
 import { GenreContextProvider } from "./contexts/GenreContext";
 import HeaderLayout from "./layouts/HeaderLayout";
 import Person from "./pages/Person";
-import SearchMovie from "./components/SearchMovie";
-import SearchPerson from "./components/SearchPerson";
+import SearchMovie from "./pages/SearchMovie";
+import SearchPerson from "./pages/SearchPerson";
 
 const router = createBrowserRouter([
   {
