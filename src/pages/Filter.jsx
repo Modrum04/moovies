@@ -23,7 +23,7 @@ function Filter() {
     <div className="container-searchPage">
       <div className="container-search-menu">
         <FilterByGenre setGenre={setGenre} setPage={setCurrentPage} />
-        <Sort setSort={setSortBy} />
+        <Sort setSort={setSortBy} setPage={setCurrentPage} />
       </div>
       {data?.length !== 0 && (
         <div className="container-handleChange" key={`${fetchedData?.total_results}`}>

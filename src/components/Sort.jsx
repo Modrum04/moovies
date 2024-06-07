@@ -2,7 +2,7 @@ import "./FilterByGenre.scss";
 import { useState, useEffect } from "react";
 import { sortTypes } from "../lib/sortTypes";
 
-function Sort({ setSort }) {
+function Sort({ setSort, setPage }) {
   const [changeTimeout, setChangeTimeout] = useState(null);
   const [selected, setSelected] = useState("");
 
@@ -22,6 +22,7 @@ function Sort({ setSort }) {
 
     const newChangeTimeout = setTimeout(() => {
       setSort(value);
+      setPage(1);
     }, 250);
 
     setChangeTimeout(newChangeTimeout);
