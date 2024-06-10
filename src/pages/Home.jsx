@@ -40,12 +40,9 @@ function Home() {
     </>
   ) : (
     <div className="home-page-container">
-      {console.log(dataNanard)}
-      {console.log(nanard)}
       <div className="presentation">
-        <h2>Bienvenue sur Moovies</h2>
-
         <Link to="/search-area/search">Films - Acteurs - Staff </Link>
+        <h2>Bienvenue sur Moovies</h2>
 
         <p className="description-site">
           Découvrez Moovies, un moteur de recherche sur le cinéma exploitant toute la richesse de
