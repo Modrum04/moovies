@@ -44,7 +44,9 @@ function Home() {
       {console.log(nanard)}
       <div className="presentation">
         <h2>Bienvenue sur Moovies</h2>
-        <h2>Votre cinémathèque</h2>
+
+        <Link to="/search-area/search">Films - Acteurs - Staff </Link>
+
         <p className="description-site">
           Découvrez Moovies, un moteur de recherche sur le cinéma exploitant toute la richesse de
           The Movie Data Base.
@@ -58,22 +60,9 @@ function Home() {
       </div>
       <h2 className="selection">La pioche</h2>
       <div className="container-cards">
-        <div className="nanar">
-          <h2 className="title-card">Le Nanard</h2>
-
-          <Card
-            originalTitle={nanard?.original_title}
-            date={nanard?.release_date}
-            poster={`https://image.tmdb.org/t/p/w500/${nanard?.poster_path}`}
-            overview={nanard?.overview}
-            voteAverage={nanard?.vote_average}
-            filmid={nanard?.id}
-            title={nanard?.title}
-            genres={nanard?.genre_ids}
-          />
-        </div>
+        {" "}
         <div className="pepite">
-          <h2 className="title-card">L'incontournable</h2>
+          <h3 className="title-card">L'incontournable</h3>
           <Card
             originalTitle={popular?.original_title}
             date={popular?.release_date}
@@ -83,6 +72,19 @@ function Home() {
             filmid={popular?.id}
             title={popular?.title}
             genres={popular?.genre_ids}
+          />
+        </div>
+        <div className="nanar">
+          <h3 className="title-card">Le Nanar</h3>
+          <Card
+            originalTitle={nanard?.original_title}
+            date={nanard?.release_date}
+            poster={`https://image.tmdb.org/t/p/w500/${nanard?.poster_path}`}
+            overview={nanard?.overview}
+            voteAverage={nanard?.vote_average}
+            filmid={nanard?.id}
+            title={nanard?.title}
+            genres={nanard?.genre_ids}
           />
         </div>
       </div>
