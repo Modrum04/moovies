@@ -60,33 +60,24 @@ function Home() {
         {" "}
         <div className="pepite">
           <h3 className="title-card">L'incontournable</h3>
-          <Card
-            originalTitle={popular?.original_title}
-            date={popular?.release_date}
-            poster={`https://image.tmdb.org/t/p/w500/${popular?.poster_path}`}
-            overview={popular?.overview}
-            voteAverage={popular?.vote_average}
-            filmid={popular?.id}
-            title={popular?.title}
-            genres={popular?.genre_ids}
-          />
+          <Card movie={popular} />
         </div>
         <div className="nanar">
           <h3 className="title-card">Le Nanar</h3>
-          <Card
-            originalTitle={nanard?.original_title}
-            date={nanard?.release_date}
-            poster={`https://image.tmdb.org/t/p/w500/${nanard?.poster_path}`}
-            overview={nanard?.overview}
-            voteAverage={nanard?.vote_average}
-            filmid={nanard?.id}
-            title={nanard?.title}
-            genres={nanard?.genre_ids}
-          />
+          <Card movie={nanard} />
         </div>
       </div>
     </div>
   );
 }
+
+// originalTitle={nanard?.original_title}
+// date={nanard?.release_date}
+// poster={`https://image.tmdb.org/t/p/w500/${nanard?.poster_path}`}
+// overview={nanard?.overview}
+// voteAverage={nanard?.vote_average}
+// filmid={nanard?.id}
+// title={nanard?.title}
+// genres={nanard?.genre_ids}
 
 export default Home;

@@ -1,10 +1,5 @@
-import SearchBar from "../components/SearchBar";
-import { useState, useEffect, useRef } from "react";
 import { fetchData, useInfiniteScroll } from "../tools/fetchData";
-import Card from "../components/Card";
-
 import Results from "../components/Results";
-import Sort from "../components/Sort";
 import { useOutletContext } from "react-router-dom";
 
 function SearchPerson() {

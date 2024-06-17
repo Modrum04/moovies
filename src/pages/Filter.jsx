@@ -1,15 +1,12 @@
 import "./Filter.scss";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { fetchData, useInfiniteScroll } from "../tools/fetchData";
 import FilterByGenre from "../components/FilterByGenre";
 import Results from "../components/Results";
 import Sort from "../components/Sort";
 
 function Filter() {
-  ////////////////
   const [sortBy, setSortBy] = useState("popularity.dsc");
-
-  /////////////
   const [genre, setGenre] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const { fetchedData } = fetchData("discover", {

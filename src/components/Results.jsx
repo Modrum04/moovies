@@ -19,14 +19,7 @@ function Results({ data, fetchedData, isLoading, type }) {
                   return (
                     <Card
                       key={movie.id}
-                      originalTitle={movie?.original_title}
-                      date={movie?.release_date}
-                      poster={movie?.poster_path}
-                      overview={movie?.overview}
-                      voteAverage={movie?.vote_average}
-                      filmid={movie?.id}
-                      title={movie?.title}
-                      genres={movie?.genre_ids}
+                      movie={movie}
                       resultNumber={movie?.resultNumb + " sur " + fetchedData?.total_results}
                     />
                   );

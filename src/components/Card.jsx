@@ -1,21 +1,21 @@
 import { Link } from "react-router-dom";
 import "./Card.scss";
-import PropTypes from "prop-types";
 import { useContext } from "react";
 import { ThemeContext } from "../contexts/ThemeContext";
 import { GenreContext } from "../contexts/GenreContext";
 
-function Card({
-  originalTitle,
-  date,
-  poster,
-  overview,
-  voteAverage,
-  title,
-  filmid,
-  genres,
-  resultNumber,
-}) {
+function Card({ movie, resultNumber }) {
+  const {
+    originalTitle = movie.original_title,
+    date = movie.release_date,
+    overview,
+    voteAverage = movie.vote_average,
+    filmid = movie.id,
+    title,
+    genres = movie.genres_ids,
+    poster = `https://image.tmdb.org/t/p/w500/${movie?.poster_path}`,
+  } = movie;
+
   const { theme } = useContext(ThemeContext);
   const { fetchedGenre } = useContext(GenreContext);
   const noInformations = "Information non disponible";
